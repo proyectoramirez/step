@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio - Jose Ramirez</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <title>My Portfolio - Jose Ramirez</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
 
-  <body>
-    <header></header>
-    <main>
-      <div id="content">
-        <h1>My Portfolio</h1>
-        <p>This is my portfolio.</p>
-        <p>Click here to get a random message:</p>
-        <button onclick="addRandomGreeting()">Hello</button>
-        <div id="greeting-container"></div>
+<body>
+  <header>
+    <div id="header-title-container">
+      <h1 class="text-primary">José Ramírez</h1>
+      <h2>Full-Stack Developer</h2>
+    </div>
+    <div id="header-contact-container">
+      <div class="contact-entry" id="contact-websites">
+        <div class="contact-title">Websites</div>
+        <div class="contact-content">
+        </div>
       </div>
-    </main>
-  </body>
+      <div class="contact-entry" id="contact-emails">
+        <div class="contact-title">Email</div>
+        <div class="contact-content"></div>
+      </div>
+      <div class="contact-entry" id="contact-phones">
+        <div class="contact-title">Phone</div>
+        <div class="contact-content"></div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div id="content">
+      <h1>My Portfolio</h1>
+      <p>This is my portfolio.</p>
+      <p>Click here to get a random message:</p>
+      <button onclick="addRandomGreeting()">Hello</button>
+      <div id="greeting-container"></div>
+    </div>
+  </main>
+</body>
 
 </html>
