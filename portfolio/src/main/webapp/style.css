@@ -11,6 +11,9 @@
   --spacing-sm: 12px;
   --spacing-xs: 8px;
 }
+.text-primary {
+  color: var(--primary);
+}
 #content {
   margin-left: auto;
   margin-right: auto;
