@@ -27,6 +27,11 @@ header {
   margin-bottom: var(--spacing-md);
   flex-wrap: wrap;
 }
+
+#header-title-container {
+  text-transform: uppercase;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
