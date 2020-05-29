@@ -95,3 +95,7 @@ main > section > .title {
   border-bottom: var(--border-style);
   color: var(--primary);
 }
+
+main > section > *:not(:last-child) {
+  margin-bottom: var(--spacing-lg);
+}
