@@ -18,9 +18,6 @@ html, body {
   margin: 0;
   padding: 0;
 }
-.text-primary {
-  color: var(--primary);
-}
 
 header {
   display: flex;
