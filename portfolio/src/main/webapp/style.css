@@ -19,6 +19,14 @@ html, body {
 .text-primary {
   color: var(--primary);
 }
+
+header {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  flex-wrap: wrap;
+}
 #content {
   margin-left: auto;
   margin-right: auto;
