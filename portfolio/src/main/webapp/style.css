@@ -11,6 +11,11 @@
   --spacing-sm: 12px;
   --spacing-xs: 8px;
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
 .text-primary {
   color: var(--primary);
 }
