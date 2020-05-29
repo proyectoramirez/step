@@ -11,6 +11,7 @@
   --spacing-md: 1rem;
   --spacing-sm: 0.5rem;
   --spacing-xs: 0.25rem;
+  --border-style: thin black solid;
 }
 
 html, body {
