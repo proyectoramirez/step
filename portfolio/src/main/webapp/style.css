@@ -60,6 +60,10 @@ header {
   margin-right: var(--spacing-md);
 }
 
+#header-title-container > .title {
+  color: var(--primary);
+}
+
 #header-title-container > :first-child {
   margin-top: 0;
   margin-bottom: var(--spacing-md);
