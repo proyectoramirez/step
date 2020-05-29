@@ -12,6 +12,7 @@
   --spacing-sm: 0.5rem;
   --spacing-xs: 0.25rem;
   --border-style: thin black solid;
+  font-family: 'Open Sans', sans-serif;
 }
 
 html, body {
