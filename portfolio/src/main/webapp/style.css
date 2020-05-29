@@ -12,6 +12,8 @@
   --spacing-sm: 0.5rem;
   --spacing-xs: 0.25rem;
   --border-style: thin black solid;
+  --max-body-width: 1080px;
+
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -20,6 +22,10 @@ html, body {
   padding: 0;
 }
 
+body {
+  max-width: var(--max-body-width);
+  margin: auto;
+}
 header {
   display: flex;
   justify-content: space-between;
