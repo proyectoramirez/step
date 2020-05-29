@@ -7,9 +7,10 @@
   --danger: #dc3545;
   --light: #f8f9fa;
   --dark: #343a40;
-  --spacing-md: 16px;
-  --spacing-sm: 12px;
-  --spacing-xs: 8px;
+  --spacing-lg: 2rem;
+  --spacing-md: 1rem;
+  --spacing-sm: 0.5rem;
+  --spacing-xs: 0.25rem;
 }
 
 html, body {
