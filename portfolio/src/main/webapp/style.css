@@ -80,3 +80,9 @@ main {
 main > section:not(:last-child) {
   margin-bottom: var(--spacing-lg);
 }
+
+main > section > .title {
+  margin-top: 0;
+  border-bottom: var(--border-style);
+  color: var(--primary);
+}
