@@ -24,6 +24,8 @@ html, body {
 
 header {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: var(--spacing-md);
   padding: var(--spacing-md);
   margin-bottom: var(--spacing-md);
