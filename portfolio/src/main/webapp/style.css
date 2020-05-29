@@ -56,6 +56,18 @@ header {
 
 #header-title-container {
   text-transform: uppercase;
+  margin: var(--spacing-md) 0;
+  margin-right: var(--spacing-md);
+}
+
+#header-title-container > :first-child {
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
+}
+
+#header-title-container > :last-child {
+  margin-bottom: 0;
+  margin-top: var(--spacing-md);
 }
 
 
