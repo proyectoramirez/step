@@ -51,10 +51,6 @@ header > .contact-container > .entry > .title {
   font-weight: bold;
 }
 
-header > .contact-container > .entry > .title::after {
-  content: ":";
-}
-
 header > .title-container {
   text-transform: uppercase;
   margin: var(--spacing-md) 0;
