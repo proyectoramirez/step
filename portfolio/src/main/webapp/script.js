@@ -187,10 +187,29 @@ function loadSectionEntry(template, data) {
   entry.querySelector(".subtitle").append(data.subtitle);
   entry.querySelector(".location").append(data.location);
   data.subtitle && entry.querySelector(".subtitle").append(`(${data.subtitle})`);
+  data.description && entry.querySelector(".description").append(
+    createSectionEntryDescription(data.description)
+  );
 
   return entry;
 }
 
+function createSectionEntryDescription(description) {
+  if (Array.isArray(description)) {
+    const list = document.createElement("ul");
+    const elements = description.map(e => {
+      const element = document.createElement("li");
+      element.append(e);
+      return element;
+    })
+
+    list.append(...elements)
+
+    return list;
+  } else {
+    return description;
+  }
+}
 function main() {
   loadContactData(RESUME.contactData);
   loadSectionData(RESUME.sections)
