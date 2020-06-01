@@ -72,13 +72,21 @@ main {
 }
 
 main > section:not(:last-child) {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
 main > section > .title {
   margin-top: 0;
   border-bottom: var(--border-style);
   color: var(--primary);
+}
+
+main > section > * {
+  margin-bottom: var(--spacing-sm);
+}
+
+main > section > .entry > .description > * {
+  margin: 0;
 }
 
 .space-between-flex {
