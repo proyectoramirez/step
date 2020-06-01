@@ -213,6 +213,7 @@ function createSectionEntryDescription(description) {
     return description;
   }
 }
+
 function main() {
   loadContactData(RESUME.contactData);
   loadSectionData(RESUME.sections)
