@@ -190,3 +190,10 @@ function loadSectionEntry(template, data) {
 
   return entry;
 }
+
+function main() {
+  loadContactData(RESUME.contactData);
+  loadSectionData(RESUME.sections)
+}
+
+document.addEventListener("DOMContentLoaded", main);
