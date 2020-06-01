@@ -131,7 +131,7 @@ function createContactEntryContent(data) {
   const node = document.createElement("div");;
 
   if (typeof data === "object") {
-    const {text, link} = data;
+    const { text, link } = data;
 
     const a = document.createElement("a");
     a.href = link;
