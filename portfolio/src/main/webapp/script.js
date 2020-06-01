@@ -186,7 +186,7 @@ function loadSectionEntry(template, data) {
   entry.querySelector(".title").append(data.title);
   entry.querySelector(".subtitle").append(data.subtitle);
   entry.querySelector(".location").append(data.location);
-  entry.querySelector(".description").append(data.description);
+  data.subtitle && entry.querySelector(".subtitle").append(`(${data.subtitle})`);
 
   return entry;
 }
