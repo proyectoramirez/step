@@ -95,3 +95,52 @@ const RESUME = {
     ]
   }
 }
+
+function loadContactData(contactData) {
+  const contactsContainer = document.querySelector("header > .contact-container");
+  const entries = createContactEntries(contactData);
+
+  contactsContainer.append(...entries);
+}
+
+function createContactEntries(contactData) {
+  const contactEntryTemplate = document.querySelector("#contact-entry");
+  const entries = Object.entries(contactData).map(
+    ([title, data]) => loadContactEntry(contactEntryTemplate, title, data)
+  );
+
+  return entries;
+}
+
+function loadContactEntry(template, title, data) {
+  const entry = template.content.cloneNode(true);
+  entry.querySelector(".title").append(title);
+
+  if (Array.isArray(data)) {
+    valueDivs = data.map(createContactEntryContent);
+    entry.querySelector(".content").append(...valueDivs);
+  } else {
+    const div = createContactEntryContent(data);
+    entry.querySelector(".content").append(div);
+  }
+
+  return entry;
+}
+
+function createContactEntryContent(data) {
+  const node = document.createElement("div");;
+
+  if (typeof data === "object") {
+    const {text, link} = data;
+
+    const a = document.createElement("a");
+    a.href = link;
+    a.append(text);
+
+    node.append(a);
+  } else {
+    node.append(data);
+  }
+
+  return node;
+}
