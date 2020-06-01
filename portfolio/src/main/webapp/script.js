@@ -182,7 +182,11 @@ function loadSectionEntry(template, data) {
   const entry = template.content.cloneNode(true);
 
   entry.querySelector(".organization").append(data.organization);
-  entry.querySelector(".dates").append(`${data.start} - ${data.end}`);
+  entry.querySelector(".dates").append(
+    data.end ? 
+    `${data.start} - ${data.end}` :
+    data.start
+  );
   entry.querySelector(".title").append(data.title);
   entry.querySelector(".subtitle").append(data.subtitle);
   entry.querySelector(".location").append(data.location);
