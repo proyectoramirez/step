@@ -166,7 +166,7 @@ function loadSection(template, title, entryData) {
   const entries = createSectionEntries(entryData);
 
   section.querySelector(".title").append(title);
-  section.append(...entries);
+  section.querySelector("section").append(...entries);
 
   return section;
 }
