@@ -144,3 +144,49 @@ function createContactEntryContent(data) {
 
   return node;
 }
+
+function loadSectionData(sectionData) {
+  const sectionContainer = document.querySelector("main");
+  const sections = createSections(sectionData);
+
+  sectionContainer.append(...sections);
+}
+
+function createSections(sectionData) {
+  const sectionTemplate = document.querySelector("#section");
+  const sections = Object.entries(sectionData).map(
+    ([title, entryData]) => loadSection(sectionTemplate, title, entryData)
+  );
+
+  return sections;
+}
+
+function loadSection(template, title, entryData) {
+  const section = template.content.cloneNode(true);
+  const entries = createSectionEntries(entryData);
+
+  section.querySelector(".title").append(title);
+  section.append(...entries);
+
+  return section;
+}
+
+function createSectionEntries(entryData) {
+  const sectionEntryTemplate = document.querySelector("#section-entry");
+  const entries = entryData.map(data => loadSectionEntry(sectionEntryTemplate, data));
+
+  return entries;
+}
+
+function loadSectionEntry(template, data) {
+  const entry = template.content.cloneNode(true);
+
+  entry.querySelector(".organization").append(data.organization);
+  entry.querySelector(".dates").append(`${data.start} - ${data.end}`);
+  entry.querySelector(".title").append(data.title);
+  entry.querySelector(".subtitle").append(data.subtitle);
+  entry.querySelector(".location").append(data.location);
+  entry.querySelector(".description").append(data.description);
+
+  return entry;
+}
