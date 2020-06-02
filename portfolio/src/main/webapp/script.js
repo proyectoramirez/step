@@ -229,6 +229,7 @@ async function requestGreeting() {
 
 function main() {
   loadContactData(RESUME.contactData);
+  loadSectionData(RESUME.sections);
   loadGreeting();
 }
 
