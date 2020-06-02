@@ -214,9 +214,22 @@ function createSectionEntryDescription(description) {
   }
 }
 
+async function loadGreeting() {
+  const greeting = await requestGreeting();
+  const mainContainer = document.querySelector('main');
+
+  mainContainer.insertAdjacentHTML('afterbegin', greeting);
+}
+
+async function requestGreeting() {
+  const request = await fetch('/data');
+
+  return await request.text();
+}
+
 function main() {
   loadContactData(RESUME.contactData);
-  loadSectionData(RESUME.sections)
+  loadGreeting();
 }
 
 document.addEventListener("DOMContentLoaded", main);
