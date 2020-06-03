@@ -17,3 +17,8 @@ tmp/
 local.properties
 .loadpath
 .factorypath
+
+##############################
+## VSCode
+##############################
+.vscode/
