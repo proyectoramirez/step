@@ -112,14 +112,13 @@ function loadContactData(contactData) {
 function createContactEntries(contactData) {
   const contactEntryTemplate = document.querySelector('#contact-entry');
   const entries = Object.entries(contactData).map(
-    ([title, data]) => loadContactEntry(contactEntryTemplate, title, data)
+    ([title, data]) => loadContactEntry(contactEntryTemplate.content.cloneNode(true), title, data)
   );
 
   return entries;
 }
 
-function loadContactEntry(template, title, data) {
-  const entry = template.content.cloneNode(true);
+function loadContactEntry(entry, title, data) {
   entry.querySelector('.title').append(title);
 
   if (Array.isArray(data)) {
@@ -161,14 +160,13 @@ function loadSectionData(sectionData) {
 function createSections(sectionData) {
   const sectionTemplate = document.querySelector('#section');
   const sections = Object.entries(sectionData).map(
-    ([title, entryData]) => loadSection(sectionTemplate, title, entryData)
+    ([title, entryData]) => loadSection(sectionTemplate.content.cloneNode(true), title, entryData)
   );
 
   return sections;
 }
 
-function loadSection(template, title, entryData) {
-  const section = template.content.cloneNode(true);
+function loadSection(section, title, entryData) {
   const entries = createSectionEntries(entryData);
 
   section.querySelector('.title').append(title);
