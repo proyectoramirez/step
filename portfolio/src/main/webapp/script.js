@@ -96,6 +96,12 @@ const RESUME = {
   }
 }
 
+document.addEventListener('DOMContentLoaded', main);
+
+function main() {
+  loadContactData(RESUME.contactData);
+  loadSectionData(RESUME.sections)
+}
 function loadContactData(contactData) {
   const contactsContainer = document.querySelector('header > .contact-container');
   const entries = createContactEntries(contactData);
@@ -213,10 +219,3 @@ function createSectionEntryDescription(description) {
     return description;
   }
 }
-
-function main() {
-  loadContactData(RESUME.contactData);
-  loadSectionData(RESUME.sections)
-}
-
-document.addEventListener('DOMContentLoaded', main);
