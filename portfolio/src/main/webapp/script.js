@@ -97,16 +97,6 @@ const RESUME = {
   }
 }
 
-document.addEventListener('DOMContentLoaded', main);
-
-/**
- * Function to be run after the HTML body has been laoded
- */
-function main() {
-  loadContactData(RESUME.contactData);
-  loadSectionData(RESUME.sections)
-}
-
 /**
  * Processes and appends the given contact information on the website header.
  * 
@@ -114,6 +104,7 @@ function main() {
  *    Its keys contain the name of each contact section, and its values are
  *    either a single or an array of contact data.
  */
+
 function loadContactData(contactData) {
   const contactsContainer = document.querySelector('header > .contact-container');
   const entries = createContactEntries(contactData);
@@ -308,3 +299,14 @@ function createSectionEntryDescription(description) {
     return description;
   }
 }
+
+/**
+ * Function to be run after the HTML body has been laoded
+ */
+function main() {
+  loadContactData(RESUME.contactData);
+  loadSectionData(RESUME.sections);
+
+}
+
+document.addEventListener('DOMContentLoaded', main);
