@@ -3,6 +3,7 @@
 
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Portfolio - Jose Ramirez</title>
     <link rel="stylesheet" href="style.css">
     <link
@@ -10,45 +11,45 @@
       rel="stylesheet">
     <script src="script.js"></script>
   </head>
+  
+  <body>
+    <header class="space-between-flex">
+      <div class="title-container">
+        <h1 class="title">José Ramírez</h1>
+        <h2>Full-Stack Developer</h2>
+      </div>
+      <div class="contact-container">
+        <template id="contact-entry">
+          <div class="entry">
+            <div class="title"></div>
+            <div class="content"></div>
+          </div>
+        </template>
+      </div>
+    </header>
+    <main>
+      <template id="section">
+        <section>
+          <h3 class="title"></h3>
+        </section>
+      </template>
 
-<body>
-  <header class="space-between-flex">
-    <div class="title-container">
-      <h1 class="title">José Ramírez</h1>
-      <h2>Full-Stack Developer</h2>
-    </div>
-    <div class="contact-container">
-      <template id="contact-entry">
+      <template id="section-entry">
         <div class="entry">
-          <div class="title"></div>
-          <div class="content"></div>
+          <div class="header space-between-flex">
+            <i class="organization"></i>
+            <div class="dates"></div>
+          </div>
+          <div class="header space-between-flex">
+            <span>
+              <b class="title"></b> <span class="subtitle"></span>
+            </span>
+            <span class="location"></span>
+          </div>
+          <div class="description"></div>
         </div>
       </template>
-    </div>
-  </header>
-  <main>
-    <template id="section">
-      <section>
-        <h3 class="title"></h3>
-      </section>
-    </template>
-
-    <template id="section-entry">
-      <div class="entry">
-        <div class="header space-between-flex">
-          <i class="organization"></i>
-          <div class="dates"></div>
-        </div>
-        <div class="header space-between-flex">
-          <span>
-            <b class="title"></b> <span class="subtitle"></span>
-          </span>
-          <span class="location"></span>
-        </div>
-        <div class="description"></div>
-      </div>
-    </template>
-  </main>
-</body>
+    </main>
+  </body>
 
 </html>
