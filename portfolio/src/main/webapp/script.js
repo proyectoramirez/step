@@ -135,7 +135,7 @@ function createContactEntries(contactData) {
  * This function populates an empty "contact-entry" html node given the contact data. 
  * 
  * @param {!DocumentFragment} entryFragment The empty contact-entry html node.
- * @param {!string} title The title of the current contact-entry.
+ * @param {string} title The title of the current contact-entry.
  * @param {!(string | {text: string, link: string} | Array<string | {text: string, link: string}>)} data 
  *    A single or an array of contact data, which could be a string or an object with text and a link.
  * 
@@ -219,7 +219,7 @@ function createSections(sectionData) {
  * This function populates an empty "section" html node given the section data. 
  * 
  * @param {!DocumentFragment} section The empty section html node.
- * @param {!string} title The title of the current section.
+ * @param {string} title The title of the current section.
  * @param {!Array<object>} entryData An array of objects describing individual experiences
  *    in each section.
  * 
