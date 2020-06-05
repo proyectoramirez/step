@@ -113,7 +113,7 @@ function loadContactData(contactData) {
 }
 
 /**
- * This function converts each section in the given contact data to 
+ * Converts each section in the given contact data to 
  * an html node based on the "contact-entry" template.
  * 
  * @param {!Object} contactData Dictionary containing the contact data to be shown. 
@@ -132,7 +132,7 @@ function createContactEntries(contactData) {
 }
 
 /**
- * This function populates an empty "contact-entry" html node given the contact data. 
+ * Populates an empty "contact-entry" html node given the contact data. 
  * 
  * @param {!DocumentFragment} entryFragment The empty contact-entry html node.
  * @param {string} title The title of the current contact-entry.
@@ -156,7 +156,7 @@ function loadContactEntry(entryFragment, title, data) {
 }
 
 /**
- * This function creates either a div or an anchor element,
+ * Creates either a div or an anchor element,
  * based on the provided data.
  * 
  * @param {!(string | {text: string, link: string})} data 
@@ -197,7 +197,7 @@ function loadSectionData(sectionData) {
 }
 
 /**
- * This function converts each element in the given section data to 
+ * Converts each element in the given section data to 
  * an html node based on the "section" template.
  * 
  * @param {!Object} sectionData Dictionary containing the experience data to be shown. 
@@ -216,7 +216,7 @@ function createSections(sectionData) {
 }
 
 /**
- * This function populates an empty "section" html node given the section data. 
+ * Populates an empty "section" html node given the section data. 
  * 
  * @param {!DocumentFragment} section The empty section html node.
  * @param {string} title The title of the current section.
@@ -235,7 +235,7 @@ function loadSection(section, title, entryData) {
 }
 
 /**
- * This function converts each element in the experience entry data to
+ * Converts each element in the experience entry data to
  * an html node based on the "section-entry template"
  * 
  * @param {!Array} entryData An array of objects describing individual experiences
@@ -251,7 +251,7 @@ function createSectionEntries(entryData) {
 }
 
 /**
- * This function populates an empty "section-entry" html node given the entry data. 
+ * Populates an empty "section-entry" html node given the entry data. 
  * 
  * @param {!DocumentFragment} entry The empty section-entry html node.
  * @param {!Object} data An object describing a specific experience.
@@ -275,7 +275,7 @@ function loadSectionEntry(entry, data) {
   return entry;
 }
 /**
- * A function that will convert description data to an ul html
+ * Converts description data to an ul html
  * element if it is an array. Otherwise, returns a string.
  * 
  * @param {!(string | Array<string>)} description A string or a list of strings
@@ -301,7 +301,7 @@ function createSectionEntryDescription(description) {
 }
 
 /**
- * Function to be run after the HTML body has been loaded.
+ * Called after the HTML body has been loaded.
  */
 function main() {
   loadContactData(RESUME.contactData);
