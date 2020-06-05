@@ -123,28 +123,10 @@ function renderContactData(contactData) {
  * @return {!HTMLElement} A populated contact-entry fragment
  */
 function buildContactEntryFragment(title, data) {
-  const fragment = createContactEntryFragment();
+  const fragment = document.querySelector("#contact-entry").content.cloneNode(true);
   const populatedFragment = populateContactEntryFragment(fragment, title, data);
 
   return populatedFragment;
-}
-
-/**
- * @return {!HTMLElement} An empty contact-entry fragment
- */
-function createContactEntryFragment() {
-  const fragment = document.createElement("div");
-  fragment.classList.add("entry");
-
-  const titleContainer = document.createElement("div");
-  titleContainer.classList.add("title");
-
-  const contentContainer = document.createElement("div");
-  contentContainer.classList.add("content");
-
-  fragment.append(titleContainer, contentContainer);
-
-  return fragment;
 }
 
 /**
