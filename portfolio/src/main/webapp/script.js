@@ -316,6 +316,7 @@ function renderGreetings(greetings) {
  */
 function buildGreetingFragment(greeting) {
   const fragment = document.createElement("div");
+  fragment.classList.add("comment")
   fragment.append(greeting);
 
   return fragment;
