@@ -301,12 +301,11 @@ function createSectionEntryDescription(description) {
 }
 
 /**
- * Function to be run after the HTML body has been laoded
+ * Function to be run after the HTML body has been loaded.
  */
 function main() {
   loadContactData(RESUME.contactData);
   loadSectionData(RESUME.sections);
-
 }
 
 document.addEventListener('DOMContentLoaded', main);
