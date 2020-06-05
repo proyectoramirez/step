@@ -134,25 +134,25 @@ function createContactEntries(contactData) {
 /**
  * This function populates an empty "contact-entry" html node given the contact data. 
  * 
- * @param {!DocumentFragment} entry The empty contact-entry html node.
+ * @param {!DocumentFragment} entryFragment The empty contact-entry html node.
  * @param {!string} title The title of the current contact-entry.
  * @param {!(string | {text: string, link: string} | Array<string | {text: string, link: string}>)} data 
  *    A single or an array of contact data, which could be a string or an object with text and a link.
  * 
  * @returns {!DocumentFragment} The populated entry.
  */
-function loadContactEntry(entry, title, data) {
-  entry.querySelector('.title').append(title);
+function loadContactEntry(entryFragment, title, data) {
+  entryFragment.querySelector('.title').append(title);
 
   if (Array.isArray(data)) {
     valueDivs = data.map(createContactEntryContent);
-    entry.querySelector('.content').append(...valueDivs);
+    entryFragment.querySelector('.content').append(...valueDivs);
   } else {
     const div = createContactEntryContent(data);
-    entry.querySelector('.content').append(div);
+    entryFragment.querySelector('.content').append(div);
   }
 
-  return entry;
+  return entryFragment;
 }
 
 /**
