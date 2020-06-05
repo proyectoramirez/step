@@ -320,7 +320,7 @@ function createSectionEntryDescription(description) {
  * Called after the HTML body has been loaded.
  */
 function main() {
-  loadContactData(RESUME.contactData);
+  renderContactData(RESUME.contactData);
   loadSectionData(RESUME.sections);
 }
 
