@@ -24,6 +24,14 @@ h1, h2, h3 {
   font-weight: 600;
 }
 
+button {
+  padding: var(--spacing-sm);
+  background-color: var(--primary);
+  border: none;
+  border-radius: var(--border-radius);
+  color: white;
+}
+
 header {
   align-items: center;
   padding: var(--spacing-md) var(--spacing-lg);
