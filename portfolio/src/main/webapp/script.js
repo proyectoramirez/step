@@ -125,7 +125,7 @@ function loadContactData(contactData) {
 function createContactEntries(contactData) {
   const contactEntryTemplate = document.querySelector('#contact-entry');
   const entries = Object.entries(contactData).map(
-    ([title, data]) => loadContactEntry(contactEntryTemplate.content.cloneNode(true), title, data)
+    ([title, data]) => loadContactEntry(contactEntryTemplate.content.cloneNode(/* deep */ true), title, data)
   );
 
   return entries;
@@ -209,7 +209,7 @@ function loadSectionData(sectionData) {
 function createSections(sectionData) {
   const sectionTemplate = document.querySelector('#section');
   const sections = Object.entries(sectionData).map(
-    ([title, entryData]) => loadSection(sectionTemplate.content.cloneNode(true), title, entryData)
+    ([title, entryData]) => loadSection(sectionTemplate.content.cloneNode(/* deep */ true), title, entryData)
   );
 
   return sections;
@@ -245,7 +245,7 @@ function loadSection(section, title, entryData) {
  */
 function createSectionEntries(entryData) {
   const sectionEntryTemplate = document.querySelector('#section-entry');
-  const entries = entryData.map(data => loadSectionEntry(sectionEntryTemplate.content.cloneNode(true), data));
+  const entries = entryData.map(data => loadSectionEntry(sectionEntryTemplate.content.cloneNode(/* deep */ true), data));
 
   return entries;
 }
