@@ -295,6 +295,11 @@ function buildSectionEntryDescription(description) {
   }
 }
 
+/**
+ * Processes and appends a list of greetings.
+ * 
+ * @param {!Array<string>} greetings A list of greetings.
+ */
 function renderGreetings(greetings) {
   const mainContainer = document.querySelector('main');
   const greetingFragments = greetings.map(buildGreetingFragment);
@@ -302,6 +307,13 @@ function renderGreetings(greetings) {
   mainContainer.prepend(...greetingFragments);
 }
 
+/**
+ * Creates and populates a greeting fragment.
+ * 
+ * @param {string} greeting The greeting to populate the fragment.
+ * 
+ * @return {!HTMLElement} The populated fragment.
+ */
 function buildGreetingFragment(greeting) {
   const fragment = document.createElement("div");
   fragment.append(greeting);
@@ -309,6 +321,11 @@ function buildGreetingFragment(greeting) {
   return fragment;
 }
 
+/**
+ * Requests a list of greetings from "/data".
+ * 
+ * @return {!Promise<!Array<string>>} A list of greetings.
+ */
 async function loadGreetings() {
   const request = await fetch('/data');
 
