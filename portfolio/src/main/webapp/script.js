@@ -295,18 +295,21 @@ function buildSectionEntryDescription(description) {
   }
 }
 
-async function loadGreeting() {
-  const greetings = await requestGreeting();
+function renderGreetings(greetings) {
   const mainContainer = document.querySelector('main');
+  const greetingFragments = greetings.map(buildGreetingFragment);
 
-  for (const greeting of greetings) {
-    const div = document.createElement("div");
-    div.append(greeting);
-    mainContainer.prepend(div);
-  }
+  mainContainer.prepend(...greetingFragments);
 }
 
-async function requestGreeting() {
+function buildGreetingFragment(greeting) {
+  const fragment = document.createElement("div");
+  fragment.append(greeting);
+
+  return fragment;
+}
+
+async function loadGreetings() {
   const request = await fetch('/data');
 
   return await request.json();
@@ -316,7 +319,7 @@ async function requestGreeting() {
  * Called after the HTML body has been loaded.
  */
 function main() {
-  loadGreeting();
+  loadGreetings().then(renderGreetings);
   renderContactData(RESUME.contactData);
   renderSectionData(RESUME.sections);
 }
