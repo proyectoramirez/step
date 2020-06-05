@@ -100,7 +100,7 @@ const RESUME = {
 /**
  * Processes and appends the given contact information on the website header.
  * 
- * @param {!object} contactData Dictionary containing the contact data to be shown. 
+ * @param {!Object} contactData Dictionary containing the contact data to be shown. 
  *    Its keys contain the name of each contact section, and its values are
  *    either a single or an array of contact data.
  */
@@ -116,7 +116,7 @@ function loadContactData(contactData) {
  * This function converts each section in the given contact data to 
  * an html node based on the "contact-entry" template.
  * 
- * @param {!object} contactData Dictionary containing the contact data to be shown. 
+ * @param {!Object} contactData Dictionary containing the contact data to be shown. 
  *    Its keys contain the name of each contact section, and its values are
  *    either a single or an array of contact data.
  * 
@@ -185,7 +185,7 @@ function createContactEntryContent(data) {
 /**
  * Processes and appends the given experience section information on the website body.
  * 
- * @param {!object} sectionData Dictionary containing the experience data to be shown. 
+ * @param {!Object} sectionData Dictionary containing the experience data to be shown. 
  *    Its keys contain the name of each experience section, and its values are
  *    an array of objects describing individual experiences.
  */
@@ -200,7 +200,7 @@ function loadSectionData(sectionData) {
  * This function converts each element in the given section data to 
  * an html node based on the "section" template.
  * 
- * @param {!object} sectionData Dictionary containing the experience data to be shown. 
+ * @param {!Object} sectionData Dictionary containing the experience data to be shown. 
  *    Its keys contain the name of each experience section, and its values are
  *    an array of objects describing individual experiences.
  * 
@@ -254,7 +254,7 @@ function createSectionEntries(entryData) {
  * This function populates an empty "section-entry" html node given the entry data. 
  * 
  * @param {!DocumentFragment} entry The empty section-entry html node.
- * @param {!object} data An object describing a specific experience.
+ * @param {!Object} data An object describing a specific experience.
  * 
  * @returns {!DocumentFragment} The populated section-entry.
  */
