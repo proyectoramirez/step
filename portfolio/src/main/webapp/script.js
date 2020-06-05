@@ -224,24 +224,10 @@ function renderSectionData(sectionData) {
  * @return {!DocumentFragment} The populated section fragment.
  */
 function buildSectionFragment(title, entryData) {
-  const fragment = createSectionFragment();
+  const fragment = document.querySelector('#section').content.cloneNode(/* deep */ true);
   const populatedFragment = populateSectionFragment(fragment, title, entryData);
 
   return populatedFragment;
-}
-
-/**
- * @return {HTMLElement} An empty section fragment
- */
-function createSectionFragment() {
-  const fragment = document.createElement("section");
-
-  const titleContainer = document.createElement("h3");
-  titleContainer.classList.add("title");
-
-  fragment.append(titleContainer);
-
-  return fragment;
 }
 
 /**
