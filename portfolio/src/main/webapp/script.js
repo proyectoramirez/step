@@ -205,49 +205,48 @@ function buildContactEntryContent(data) {
  *    Its keys contain the name of each experience section, and its values are
  *    an array of objects describing individual experiences.
  */
-function loadSectionData(sectionData) {
+function renderSectionData(sectionData) {
   const sectionContainer = document.querySelector('main');
-  const sections = createSections(sectionData);
+  const sections = Object.entries(sectionData).map(
+    ([title, entryData]) => buildSectionFragment(title, entryData)
+  );
 
   sectionContainer.append(...sections);
 }
 
 /**
- * Converts each element in the given section data to 
- * an html node based on the "section" template.
+ * Creates and populates a section fragment.
  * 
- * @param {!Object} sectionData Dictionary containing the experience data to be shown. 
- *    Its keys contain the name of each experience section, and its values are
- *    an array of objects describing individual experiences.
+ * @param {string} title The title of the current section.
+ * @param {!Array<object>} entryData An array of objects describing individual experiences
+ *    in each section.
  * 
- * @return {!Array} The array of "section" html nodes.
+ * @return {!DocumentFragment} The populated section fragment.
  */
-function createSections(sectionData) {
-  const sectionTemplate = document.querySelector('#section');
-  const sections = Object.entries(sectionData).map(
-    ([title, entryData]) => loadSection(sectionTemplate.content.cloneNode(/* deep */ true), title, entryData)
-  );
+function buildSectionFragment(title, entryData) {
+  const fragment = document.querySelector('#section').content.cloneNode(/* deep */ true);
+  const populatedFragment = populateSectionFragment(fragment, title, entryData);
 
-  return sections;
+  return populatedFragment;
 }
 
 /**
- * Populates an empty "section" html node given the section data. 
+ * Populates an empty section fragment. 
  * 
- * @param {!DocumentFragment} section The empty section html node.
+ * @param {!DocumentFragment} section The empty section fragment.
  * @param {string} title The title of the current section.
  * @param {!Array<object>} entryData An array of objects describing individual experiences
  *    in each section.
  * 
  * @return {!DocumentFragment} The populated section.
  */
-function loadSection(section, title, entryData) {
+function populateSectionFragment(fragment, title, entryData) {
   const entries = createSectionEntries(entryData);
 
-  section.querySelector('.title').append(title);
-  section.querySelector('section').append(...entries);
+  fragment.querySelector('.title').append(title);
+  fragment.querySelector('section').append(...entries);
 
-  return section;
+  return fragment;
 }
 
 /**
@@ -321,7 +320,7 @@ function createSectionEntryDescription(description) {
  */
 function main() {
   renderContactData(RESUME.contactData);
-  loadSectionData(RESUME.sections);
+  renderSectionData(RESUME.sections);
 }
 
 document.addEventListener('DOMContentLoaded', main);
