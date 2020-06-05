@@ -97,24 +97,14 @@ const RESUME = {
   }
 }
 
-document.addEventListener('DOMContentLoaded', main);
-
-/**
- * Function to be run after the HTML body has been laoded
- */
-function main() {
-  loadContactData(RESUME.contactData);
-  loadSectionData(RESUME.sections);
-  loadGreeting();
-}
-
 /**
  * Processes and appends the given contact information on the website header.
  * 
- * @param {!object} contactData Dictionary containing the contact data to be shown. 
+ * @param {!Object} contactData Dictionary containing the contact data to be shown. 
  *    Its keys contain the name of each contact section, and its values are
  *    either a single or an array of contact data.
  */
+
 function loadContactData(contactData) {
   const contactsContainer = document.querySelector('header > .contact-container');
   const entries = createContactEntries(contactData);
@@ -123,59 +113,59 @@ function loadContactData(contactData) {
 }
 
 /**
- * This function converts each section in the given contact data to 
+ * Converts each section in the given contact data to 
  * an html node based on the "contact-entry" template.
  * 
- * @param {!object} contactData Dictionary containing the contact data to be shown. 
+ * @param {!Object} contactData Dictionary containing the contact data to be shown. 
  *    Its keys contain the name of each contact section, and its values are
  *    either a single or an array of contact data.
  * 
- * @returns {!Array} The array of "contact-entry" html nodes.
+ * @return {!Array} The array of "contact-entry" html nodes.
  */
 function createContactEntries(contactData) {
   const contactEntryTemplate = document.querySelector('#contact-entry');
   const entries = Object.entries(contactData).map(
-    ([title, data]) => loadContactEntry(contactEntryTemplate.content.cloneNode(true), title, data)
+    ([title, data]) => loadContactEntry(contactEntryTemplate.content.cloneNode(/* deep */ true), title, data)
   );
 
   return entries;
 }
 
 /**
- * This function populates an empty "contact-entry" html node given the contact data. 
+ * Populates an empty "contact-entry" html node given the contact data. 
  * 
- * @param {!DocumentFragment} entry The empty contact-entry html node.
- * @param {!string} title The title of the current contact-entry.
+ * @param {!DocumentFragment} entryFragment The empty contact-entry html node.
+ * @param {string} title The title of the current contact-entry.
  * @param {!(string | {text: string, link: string} | Array<string | {text: string, link: string}>)} data 
  *    A single or an array of contact data, which could be a string or an object with text and a link.
  * 
- * @returns {!DocumentFragment} The populated entry.
+ * @return {!DocumentFragment} The populated entry.
  */
-function loadContactEntry(entry, title, data) {
-  entry.querySelector('.title').append(title);
+function loadContactEntry(entryFragment, title, data) {
+  entryFragment.querySelector('.title').append(title);
 
   if (Array.isArray(data)) {
     valueDivs = data.map(createContactEntryContent);
-    entry.querySelector('.content').append(...valueDivs);
+    entryFragment.querySelector('.content').append(...valueDivs);
   } else {
     const div = createContactEntryContent(data);
-    entry.querySelector('.content').append(div);
+    entryFragment.querySelector('.content').append(div);
   }
 
-  return entry;
+  return entryFragment;
 }
 
 /**
- * This function creates either a div or an anchor element,
+ * Creates either a div or an anchor element,
  * based on the provided data.
  * 
  * @param {!(string | {text: string, link: string})} data 
  *    Contact information to be used in the created element
  * 
- * @returns {!HTMLElement} The element containing contact information
+ * @return {!HTMLElement} The element containing contact information
  */
 function createContactEntryContent(data) {
-  const node = document.createElement('div');;
+  const node = document.createElement('div');
 
   if (typeof data === 'object') {
     const { text, link } = data;
@@ -195,7 +185,7 @@ function createContactEntryContent(data) {
 /**
  * Processes and appends the given experience section information on the website body.
  * 
- * @param {!object} sectionData Dictionary containing the experience data to be shown. 
+ * @param {!Object} sectionData Dictionary containing the experience data to be shown. 
  *    Its keys contain the name of each experience section, and its values are
  *    an array of objects describing individual experiences.
  */
@@ -207,33 +197,33 @@ function loadSectionData(sectionData) {
 }
 
 /**
- * This function converts each element in the given section data to 
+ * Converts each element in the given section data to 
  * an html node based on the "section" template.
  * 
- * @param {!object} sectionData Dictionary containing the experience data to be shown. 
+ * @param {!Object} sectionData Dictionary containing the experience data to be shown. 
  *    Its keys contain the name of each experience section, and its values are
  *    an array of objects describing individual experiences.
  * 
- * @returns {!Array} The array of "section" html nodes.
+ * @return {!Array} The array of "section" html nodes.
  */
 function createSections(sectionData) {
   const sectionTemplate = document.querySelector('#section');
   const sections = Object.entries(sectionData).map(
-    ([title, entryData]) => loadSection(sectionTemplate.content.cloneNode(true), title, entryData)
+    ([title, entryData]) => loadSection(sectionTemplate.content.cloneNode(/* deep */ true), title, entryData)
   );
 
   return sections;
 }
 
 /**
- * This function populates an empty "section" html node given the section data. 
+ * Populates an empty "section" html node given the section data. 
  * 
  * @param {!DocumentFragment} section The empty section html node.
- * @param {!string} title The title of the current section.
+ * @param {string} title The title of the current section.
  * @param {!Array<object>} entryData An array of objects describing individual experiences
  *    in each section.
  * 
- * @returns {!DocumentFragment} The populated section.
+ * @return {!DocumentFragment} The populated section.
  */
 function loadSection(section, title, entryData) {
   const entries = createSectionEntries(entryData);
@@ -245,28 +235,28 @@ function loadSection(section, title, entryData) {
 }
 
 /**
- * This function converts each element in the experience entry data to
+ * Converts each element in the experience entry data to
  * an html node based on the "section-entry template"
  * 
  * @param {!Array} entryData An array of objects describing individual experiences
  *    in each section.
  * 
- * @returns {Array} The array of "section-entry" html nodes
+ * @return {Array} The array of "section-entry" html nodes
  */
 function createSectionEntries(entryData) {
   const sectionEntryTemplate = document.querySelector('#section-entry');
-  const entries = entryData.map(data => loadSectionEntry(sectionEntryTemplate.content.cloneNode(true), data));
+  const entries = entryData.map(data => loadSectionEntry(sectionEntryTemplate.content.cloneNode(/* deep */ true), data));
 
   return entries;
 }
 
 /**
- * This function populates an empty "section-entry" html node given the entry data. 
+ * Populates an empty "section-entry" html node given the entry data. 
  * 
  * @param {!DocumentFragment} entry The empty section-entry html node.
- * @param {!object} data An object describing a specific experience.
+ * @param {!Object} data An object describing a specific experience.
  * 
- * @returns {!DocumentFragment} The populated section-entry.
+ * @return {!DocumentFragment} The populated section-entry.
  */
 function loadSectionEntry(entry, data) {
   entry.querySelector('.organization').append(data.organization);
@@ -285,13 +275,13 @@ function loadSectionEntry(entry, data) {
   return entry;
 }
 /**
- * A function that will convert description data to an ul html
+ * Converts description data to an ul html
  * element if it is an array. Otherwise, returns a string.
  * 
  * @param {!(string | Array<string>)} description A string or a list of strings
  *    describing an experience.
  * 
- * @returns {string | HTMLElement}
+ * @return {string | HTMLElement}
  */
 function createSectionEntryDescription(description) {
   if (Array.isArray(description)) {
@@ -322,3 +312,14 @@ async function requestGreeting() {
 
   return await request.text();
 }
+
+/**
+ * Called after the HTML body has been loaded.
+ */
+function main() {
+  loadContactData(RESUME.contactData);
+  loadSectionData(RESUME.sections);
+  loadGreeting();
+}
+
+document.addEventListener('DOMContentLoaded', main);
