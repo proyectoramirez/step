@@ -120,7 +120,7 @@ function loadContactData(contactData) {
  *    Its keys contain the name of each contact section, and its values are
  *    either a single or an array of contact data.
  * 
- * @returns {!Array} The array of "contact-entry" html nodes.
+ * @return {!Array} The array of "contact-entry" html nodes.
  */
 function createContactEntries(contactData) {
   const contactEntryTemplate = document.querySelector('#contact-entry');
@@ -139,7 +139,7 @@ function createContactEntries(contactData) {
  * @param {!(string | {text: string, link: string} | Array<string | {text: string, link: string}>)} data 
  *    A single or an array of contact data, which could be a string or an object with text and a link.
  * 
- * @returns {!DocumentFragment} The populated entry.
+ * @return {!DocumentFragment} The populated entry.
  */
 function loadContactEntry(entryFragment, title, data) {
   entryFragment.querySelector('.title').append(title);
@@ -162,7 +162,7 @@ function loadContactEntry(entryFragment, title, data) {
  * @param {!(string | {text: string, link: string})} data 
  *    Contact information to be used in the created element
  * 
- * @returns {!HTMLElement} The element containing contact information
+ * @return {!HTMLElement} The element containing contact information
  */
 function createContactEntryContent(data) {
   const node = document.createElement('div');;
@@ -204,7 +204,7 @@ function loadSectionData(sectionData) {
  *    Its keys contain the name of each experience section, and its values are
  *    an array of objects describing individual experiences.
  * 
- * @returns {!Array} The array of "section" html nodes.
+ * @return {!Array} The array of "section" html nodes.
  */
 function createSections(sectionData) {
   const sectionTemplate = document.querySelector('#section');
@@ -223,7 +223,7 @@ function createSections(sectionData) {
  * @param {!Array<object>} entryData An array of objects describing individual experiences
  *    in each section.
  * 
- * @returns {!DocumentFragment} The populated section.
+ * @return {!DocumentFragment} The populated section.
  */
 function loadSection(section, title, entryData) {
   const entries = createSectionEntries(entryData);
@@ -241,7 +241,7 @@ function loadSection(section, title, entryData) {
  * @param {!Array} entryData An array of objects describing individual experiences
  *    in each section.
  * 
- * @returns {Array} The array of "section-entry" html nodes
+ * @return {Array} The array of "section-entry" html nodes
  */
 function createSectionEntries(entryData) {
   const sectionEntryTemplate = document.querySelector('#section-entry');
@@ -256,7 +256,7 @@ function createSectionEntries(entryData) {
  * @param {!DocumentFragment} entry The empty section-entry html node.
  * @param {!Object} data An object describing a specific experience.
  * 
- * @returns {!DocumentFragment} The populated section-entry.
+ * @return {!DocumentFragment} The populated section-entry.
  */
 function loadSectionEntry(entry, data) {
   entry.querySelector('.organization').append(data.organization);
@@ -281,7 +281,7 @@ function loadSectionEntry(entry, data) {
  * @param {!(string | Array<string>)} description A string or a list of strings
  *    describing an experience.
  * 
- * @returns {string | HTMLElement}
+ * @return {string | HTMLElement}
  */
 function createSectionEntryDescription(description) {
   if (Array.isArray(description)) {
