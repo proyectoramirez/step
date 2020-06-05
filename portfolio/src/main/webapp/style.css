@@ -6,6 +6,7 @@
   --spacing-xs: 0.25rem;
   --border-style: thin black solid;
   --max-body-width: 1080px;
+  --border-radius: 2px;
 
   font-family: 'Open Sans', sans-serif;
 }
