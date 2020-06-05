@@ -104,31 +104,47 @@ const RESUME = {
  *    Its keys contain the name of each contact section, and its values are
  *    either a single or an array of contact data.
  */
-
-function loadContactData(contactData) {
+function renderContactData(contactData) {
   const contactsContainer = document.querySelector('header > .contact-container');
-  const entries = createContactEntries(contactData);
+  const entries = Object.entries(contactData).map(
+    ([title, data]) => buildContactEntryFragment(title, data)
+  );
 
   contactsContainer.append(...entries);
 }
 
 /**
- * Converts each section in the given contact data to 
- * an html node based on the "contact-entry" template.
+ * Creates and populates a contact-entry fragment
  * 
- * @param {!Object} contactData Dictionary containing the contact data to be shown. 
- *    Its keys contain the name of each contact section, and its values are
- *    either a single or an array of contact data.
+ * @param {string} title The title of the current contact-entry.
+ * @param {!(string | {text: string, link: string} | Array<string | {text: string, link: string}>)} data 
+ *    A single or an array of contact data, which could be a string or an object with text and a link.
  * 
- * @return {!Array} The array of "contact-entry" html nodes.
+ * @return {HTMLElement} A populated "contact-entry"
  */
-function createContactEntries(contactData) {
-  const contactEntryTemplate = document.querySelector('#contact-entry');
-  const entries = Object.entries(contactData).map(
-    ([title, data]) => loadContactEntry(contactEntryTemplate.content.cloneNode(/* deep */ true), title, data)
-  );
+function buildContactEntryFragment(title, data) {
+  const fragment = createContactEntryFragment();
+  const populatedFragment = populateContactEntryFragment(fragment, title, data);
 
-  return entries;
+  return populatedFragment;
+}
+
+/**
+ * @return {HTMLElement} An empty contact-entry fragment
+ */
+function createContactEntryFragment() {
+  const fragment = document.createElement("div");
+  fragment.classList.add("entry");
+
+  const titleContainer = document.createElement("div");
+  titleContainer.classList.add("title");
+
+  const contentContainer = document.createElement("div");
+  contentContainer.classList.add("content");
+
+  fragment.append(titleContainer, contentContainer);
+
+  return fragment;
 }
 
 /**
@@ -139,9 +155,9 @@ function createContactEntries(contactData) {
  * @param {!(string | {text: string, link: string} | Array<string | {text: string, link: string}>)} data 
  *    A single or an array of contact data, which could be a string or an object with text and a link.
  * 
- * @return {!DocumentFragment} The populated entry.
+ * @return {!DocumentFragment} The populated contact entry fragment.
  */
-function loadContactEntry(entryFragment, title, data) {
+function populateContactEntryFragment(entryFragment, title, data) {
   entryFragment.querySelector('.title').append(title);
 
   if (Array.isArray(data)) {
