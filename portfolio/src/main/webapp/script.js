@@ -258,7 +258,7 @@ function populateSectionFragment(fragment, title, entryData) {
   const entries = entryData.map(buildSectionEntryFragment);
 
   fragment.querySelector('.title').append(title);
-  fragment.querySelector('section').append(...entries);
+  fragment.append(...entries);
 
   return fragment;
 }
