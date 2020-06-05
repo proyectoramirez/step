@@ -301,16 +301,20 @@ function createSectionEntryDescription(description) {
 }
 
 async function loadGreeting() {
-  const greeting = await requestGreeting();
+  const greetings = await requestGreeting();
   const mainContainer = document.querySelector('main');
 
-  mainContainer.insertAdjacentHTML('afterbegin', greeting);
+  for (const greeting of greetings) {
+    const div = document.createElement("div");
+    div.append(greeting);
+    mainContainer.prepend(div);
+  }
 }
 
 async function requestGreeting() {
   const request = await fetch('/data');
 
-  return await request.text();
+  return await request.json();
 }
 
 /**
