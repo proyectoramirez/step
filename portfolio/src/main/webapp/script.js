@@ -104,31 +104,29 @@ const RESUME = {
  *    Its keys contain the name of each contact section, and its values are
  *    either a single or an array of contact data.
  */
-
-function loadContactData(contactData) {
+function renderContactData(contactData) {
   const contactsContainer = document.querySelector('header > .contact-container');
-  const entries = createContactEntries(contactData);
+  const entries = Object.entries(contactData).map(
+    ([title, data]) => buildContactEntryFragment(title, data)
+  );
 
   contactsContainer.append(...entries);
 }
 
 /**
- * Converts each section in the given contact data to 
- * an html node based on the "contact-entry" template.
+ * Creates and populates a contact-entry fragment
  * 
- * @param {!Object} contactData Dictionary containing the contact data to be shown. 
- *    Its keys contain the name of each contact section, and its values are
- *    either a single or an array of contact data.
+ * @param {string} title The title of the current contact-entry.
+ * @param {!(string | {text: string, link: string} | Array<string | {text: string, link: string}>)} data 
+ *    A single or an array of contact data, which could be a string or an object with text and a link.
  * 
- * @return {!Array} The array of "contact-entry" html nodes.
+ * @return {!HTMLElement} A populated contact-entry fragment
  */
-function createContactEntries(contactData) {
-  const contactEntryTemplate = document.querySelector('#contact-entry');
-  const entries = Object.entries(contactData).map(
-    ([title, data]) => loadContactEntry(contactEntryTemplate.content.cloneNode(/* deep */ true), title, data)
-  );
+function buildContactEntryFragment(title, data) {
+  const fragment = document.querySelector("#contact-entry").content.cloneNode(true);
+  const populatedFragment = populateContactEntryFragment(fragment, title, data);
 
-  return entries;
+  return populatedFragment;
 }
 
 /**
@@ -139,16 +137,16 @@ function createContactEntries(contactData) {
  * @param {!(string | {text: string, link: string} | Array<string | {text: string, link: string}>)} data 
  *    A single or an array of contact data, which could be a string or an object with text and a link.
  * 
- * @return {!DocumentFragment} The populated entry.
+ * @return {!DocumentFragment} The populated contact entry fragment.
  */
-function loadContactEntry(entryFragment, title, data) {
+function populateContactEntryFragment(entryFragment, title, data) {
   entryFragment.querySelector('.title').append(title);
 
   if (Array.isArray(data)) {
-    valueDivs = data.map(createContactEntryContent);
+    valueDivs = data.map(buildContactEntryContent);
     entryFragment.querySelector('.content').append(...valueDivs);
   } else {
-    const div = createContactEntryContent(data);
+    const div = buildContactEntryContent(data);
     entryFragment.querySelector('.content').append(div);
   }
 
@@ -164,7 +162,7 @@ function loadContactEntry(entryFragment, title, data) {
  * 
  * @return {!HTMLElement} The element containing contact information
  */
-function createContactEntryContent(data) {
+function buildContactEntryContent(data) {
   const node = document.createElement('div');
 
   if (typeof data === 'object') {
@@ -189,90 +187,87 @@ function createContactEntryContent(data) {
  *    Its keys contain the name of each experience section, and its values are
  *    an array of objects describing individual experiences.
  */
-function loadSectionData(sectionData) {
+function renderSectionData(sectionData) {
   const sectionContainer = document.querySelector('main');
-  const sections = createSections(sectionData);
+  const sections = Object.entries(sectionData).map(
+    ([title, entryData]) => buildSectionFragment(title, entryData)
+  );
 
   sectionContainer.append(...sections);
 }
 
 /**
- * Converts each element in the given section data to 
- * an html node based on the "section" template.
+ * Creates and populates a section fragment.
  * 
- * @param {!Object} sectionData Dictionary containing the experience data to be shown. 
- *    Its keys contain the name of each experience section, and its values are
- *    an array of objects describing individual experiences.
+ * @param {string} title The title of the current section.
+ * @param {!Array<object>} entryData An array of objects describing individual experiences
+ *    in each section.
  * 
- * @return {!Array} The array of "section" html nodes.
+ * @return {!DocumentFragment} The populated section fragment.
  */
-function createSections(sectionData) {
-  const sectionTemplate = document.querySelector('#section');
-  const sections = Object.entries(sectionData).map(
-    ([title, entryData]) => loadSection(sectionTemplate.content.cloneNode(/* deep */ true), title, entryData)
-  );
+function buildSectionFragment(title, entryData) {
+  const fragment = document.querySelector('#section').content.cloneNode(/* deep */ true);
+  const populatedFragment = populateSectionFragment(fragment, title, entryData);
 
-  return sections;
+  return populatedFragment;
 }
 
 /**
- * Populates an empty "section" html node given the section data. 
+ * Populates an empty section fragment. 
  * 
- * @param {!DocumentFragment} section The empty section html node.
+ * @param {!DocumentFragment} section The empty section fragment.
  * @param {string} title The title of the current section.
  * @param {!Array<object>} entryData An array of objects describing individual experiences
  *    in each section.
  * 
  * @return {!DocumentFragment} The populated section.
  */
-function loadSection(section, title, entryData) {
-  const entries = createSectionEntries(entryData);
+function populateSectionFragment(fragment, title, entryData) {
+  const entries = entryData.map(buildSectionEntryFragment);
 
-  section.querySelector('.title').append(title);
-  section.querySelector('section').append(...entries);
+  fragment.querySelector('.title').append(title);
+  fragment.querySelector('section').append(...entries);
 
-  return section;
+  return fragment;
 }
 
 /**
- * Converts each element in the experience entry data to
- * an html node based on the "section-entry template"
+ * Creates and populates a section-entry fragment
  * 
- * @param {!Array} entryData An array of objects describing individual experiences
- *    in each section.
- * 
- * @return {Array} The array of "section-entry" html nodes
- */
-function createSectionEntries(entryData) {
-  const sectionEntryTemplate = document.querySelector('#section-entry');
-  const entries = entryData.map(data => loadSectionEntry(sectionEntryTemplate.content.cloneNode(/* deep */ true), data));
-
-  return entries;
-}
-
-/**
- * Populates an empty "section-entry" html node given the entry data. 
- * 
- * @param {!DocumentFragment} entry The empty section-entry html node.
  * @param {!Object} data An object describing a specific experience.
  * 
  * @return {!DocumentFragment} The populated section-entry.
  */
-function loadSectionEntry(entry, data) {
-  entry.querySelector('.organization').append(data.organization);
-  entry.querySelector('.dates').append(
+function buildSectionEntryFragment(entryData) {
+  const fragment = document.querySelector('#section-entry').content.cloneNode(/* deep */ true);
+  const populatedFragment = populateSectionEntryFragment(fragment, entryData);
+
+  return populatedFragment;
+}
+
+/**
+ * Populates an empty section-entry fragment. 
+ * 
+ * @param {!HTMLElement} entry The empty section-entry fragment.
+ * @param {!Object} data An object describing a specific experience.
+ * 
+ * @return {!DocumentFragment} The populated section-entry fragment.
+ */
+function populateSectionEntryFragment(fragment, data) {
+  fragment.querySelector('.organization').append(data.organization);
+  fragment.querySelector('.dates').append(
     data.end ?
       `${data.start} - ${data.end}` :
       data.start
   );
-  entry.querySelector('.title').append(data.title);
-  entry.querySelector('.location').append(data.location);
-  data.subtitle && entry.querySelector('.subtitle').append(`(${data.subtitle})`);
-  data.description && entry.querySelector('.description').append(
-    createSectionEntryDescription(data.description)
+  fragment.querySelector('.title').append(data.title);
+  fragment.querySelector('.location').append(data.location);
+  data.subtitle && fragment.querySelector('.subtitle').append(`(${data.subtitle})`);
+  data.description && fragment.querySelector('.description').append(
+    buildSectionEntryDescription(data.description)
   );
 
-  return entry;
+  return fragment;
 }
 /**
  * Converts description data to an ul html
@@ -281,9 +276,9 @@ function loadSectionEntry(entry, data) {
  * @param {!(string | Array<string>)} description A string or a list of strings
  *    describing an experience.
  * 
- * @return {string | HTMLElement}
+ * @return {string | !HTMLElement}
  */
-function createSectionEntryDescription(description) {
+function buildSectionEntryDescription(description) {
   if (Array.isArray(description)) {
     const list = document.createElement('ul');
     const elements = description.map(e => {
@@ -321,9 +316,9 @@ async function requestGreeting() {
  * Called after the HTML body has been loaded.
  */
 function main() {
-  loadContactData(RESUME.contactData);
-  loadSectionData(RESUME.sections);
   loadGreeting();
+  renderContactData(RESUME.contactData);
+  renderSectionData(RESUME.sections);
 }
 
 document.addEventListener('DOMContentLoaded', main);
