@@ -165,7 +165,7 @@ function loadContactEntry(entryFragment, title, data) {
  * @return {!HTMLElement} The element containing contact information
  */
 function createContactEntryContent(data) {
-  const node = document.createElement('div');;
+  const node = document.createElement('div');
 
   if (typeof data === 'object') {
     const { text, link } = data;
