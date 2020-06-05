@@ -241,7 +241,7 @@ function buildSectionFragment(title, entryData) {
  * @return {!DocumentFragment} The populated section.
  */
 function populateSectionFragment(fragment, title, entryData) {
-  const entries = createSectionEntries(entryData);
+  const entries = entryData.map(buildSectionEntryFragment);
 
   fragment.querySelector('.title').append(title);
   fragment.querySelector('section').append(...entries);
@@ -250,44 +250,42 @@ function populateSectionFragment(fragment, title, entryData) {
 }
 
 /**
- * Converts each element in the experience entry data to
- * an html node based on the "section-entry template"
+ * Creates and populates a section-entry fragment
  * 
- * @param {!Array} entryData An array of objects describing individual experiences
- *    in each section.
- * 
- * @return {!Array} The array of "section-entry" html nodes
- */
-function createSectionEntries(entryData) {
-  const sectionEntryTemplate = document.querySelector('#section-entry');
-  const entries = entryData.map(data => loadSectionEntry(sectionEntryTemplate.content.cloneNode(/* deep */ true), data));
-
-  return entries;
-}
-
-/**
- * Populates an empty "section-entry" html node given the entry data. 
- * 
- * @param {!DocumentFragment} entry The empty section-entry html node.
  * @param {!Object} data An object describing a specific experience.
  * 
  * @return {!DocumentFragment} The populated section-entry.
  */
-function loadSectionEntry(entry, data) {
-  entry.querySelector('.organization').append(data.organization);
-  entry.querySelector('.dates').append(
+function buildSectionEntryFragment(entryData) {
+  const fragment = document.querySelector('#section-entry').content.cloneNode(/* deep */ true);
+  const populatedFragment = populateSectionEntryFragment(fragment, entryData);
+
+  return populatedFragment;
+}
+
+/**
+ * Populates an empty section-entry fragment. 
+ * 
+ * @param {!HTMLElement} entry The empty section-entry fragment.
+ * @param {!Object} data An object describing a specific experience.
+ * 
+ * @return {!DocumentFragment} The populated section-entry fragment.
+ */
+function populateSectionEntryFragment(fragment, data) {
+  fragment.querySelector('.organization').append(data.organization);
+  fragment.querySelector('.dates').append(
     data.end ?
       `${data.start} - ${data.end}` :
       data.start
   );
-  entry.querySelector('.title').append(data.title);
-  entry.querySelector('.location').append(data.location);
-  data.subtitle && entry.querySelector('.subtitle').append(`(${data.subtitle})`);
-  data.description && entry.querySelector('.description').append(
-    createSectionEntryDescription(data.description)
+  fragment.querySelector('.title').append(data.title);
+  fragment.querySelector('.location').append(data.location);
+  data.subtitle && fragment.querySelector('.subtitle').append(`(${data.subtitle})`);
+  data.description && fragment.querySelector('.description').append(
+    buildSectionEntryDescription(data.description)
   );
 
-  return entry;
+  return fragment;
 }
 /**
  * Converts description data to an ul html
@@ -298,7 +296,7 @@ function loadSectionEntry(entry, data) {
  * 
  * @return {string | !HTMLElement}
  */
-function createSectionEntryDescription(description) {
+function buildSectionEntryDescription(description) {
   if (Array.isArray(description)) {
     const list = document.createElement('ul');
     const elements = description.map(e => {
