@@ -120,7 +120,7 @@ function renderContactData(contactData) {
  * @param {!(string | {text: string, link: string} | Array<string | {text: string, link: string}>)} data 
  *    A single or an array of contact data, which could be a string or an object with text and a link.
  * 
- * @return {HTMLElement} A populated "contact-entry"
+ * @return {!HTMLElement} A populated "contact-entry"
  */
 function buildContactEntryFragment(title, data) {
   const fragment = createContactEntryFragment();
@@ -130,7 +130,7 @@ function buildContactEntryFragment(title, data) {
 }
 
 /**
- * @return {HTMLElement} An empty contact-entry fragment
+ * @return {!HTMLElement} An empty contact-entry fragment
  */
 function createContactEntryFragment() {
   const fragment = document.createElement("div");
@@ -257,7 +257,7 @@ function loadSection(section, title, entryData) {
  * @param {!Array} entryData An array of objects describing individual experiences
  *    in each section.
  * 
- * @return {Array} The array of "section-entry" html nodes
+ * @return {!Array} The array of "section-entry" html nodes
  */
 function createSectionEntries(entryData) {
   const sectionEntryTemplate = document.querySelector('#section-entry');
@@ -297,7 +297,7 @@ function loadSectionEntry(entry, data) {
  * @param {!(string | Array<string>)} description A string or a list of strings
  *    describing an experience.
  * 
- * @return {string | HTMLElement}
+ * @return {string | !HTMLElement}
  */
 function createSectionEntryDescription(description) {
   if (Array.isArray(description)) {
