@@ -98,6 +98,34 @@ main > section > .entry > .description > * {
   margin: 0;
 }
 
+main > .comments-section > .comments-container {
+  display: flex;
+}
+
+main > .comments-section > .comments-container > :not(:last-child) {
+  margin-right: var(--spacing-md);
+}
+
+
+main > .comments-section .comments-list {
+  flex: 2 0 0;
+}
+
+main > .comments-section .comments-form-container {
+  flex: 1 0 0;
+}
+
+main > .comments-section .comments-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+  padding: var(--spacing-sm);
+}
+
+main > .comments-section .comments-form > :not(:last-child) {
+  margin-bottom: var(--spacing-sm);
+}
+
 .space-between-flex {
   display: flex;
   justify-content: space-between;
