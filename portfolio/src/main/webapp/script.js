@@ -161,10 +161,10 @@ function populateContactEntryFragment(entryFragment, title, data) {
   entryFragment.querySelector('.title').append(title);
 
   if (Array.isArray(data)) {
-    valueDivs = data.map(createContactEntryContent);
+    valueDivs = data.map(buildContactEntryContent);
     entryFragment.querySelector('.content').append(...valueDivs);
   } else {
-    const div = createContactEntryContent(data);
+    const div = buildContactEntryContent(data);
     entryFragment.querySelector('.content').append(div);
   }
 
@@ -180,7 +180,7 @@ function populateContactEntryFragment(entryFragment, title, data) {
  * 
  * @return {!HTMLElement} The element containing contact information
  */
-function createContactEntryContent(data) {
+function buildContactEntryContent(data) {
   const node = document.createElement('div');
 
   if (typeof data === 'object') {
