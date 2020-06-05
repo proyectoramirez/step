@@ -120,7 +120,7 @@ function renderContactData(contactData) {
  * @param {!(string | {text: string, link: string} | Array<string | {text: string, link: string}>)} data 
  *    A single or an array of contact data, which could be a string or an object with text and a link.
  * 
- * @return {!HTMLElement} A populated "contact-entry"
+ * @return {!HTMLElement} A populated contact-entry fragment
  */
 function buildContactEntryFragment(title, data) {
   const fragment = createContactEntryFragment();
