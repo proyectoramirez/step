@@ -163,7 +163,7 @@ function populateContactEntryFragment(entryFragment, title, data) {
  * @return {!HTMLElement} The element containing contact information
  */
 function buildContactEntryContent(data) {
-  const node = document.createElement('div');
+  const container = document.createElement('div');
 
   if (typeof data === 'object') {
     const { text, link } = data;
@@ -172,12 +172,12 @@ function buildContactEntryContent(data) {
     a.href = link;
     a.append(text);
 
-    node.append(a);
+    container.append(a);
   } else {
-    node.append(data);
+    container.append(data);
   }
 
-  return node;
+  return container;
 }
 
 /**
