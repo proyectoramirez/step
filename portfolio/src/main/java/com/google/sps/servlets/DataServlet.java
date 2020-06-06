@@ -15,6 +15,7 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -51,5 +52,14 @@ public class DataServlet extends HttpServlet {
     comments.add(comment);
 
     response.sendRedirect("/");
+  }
+
+  private Entity createCommentEntity(String commentText) {
+    Entity commentEntity = new Entity("Comment");
+
+    commentEntity.setProperty("timestamp", Instant.now());
+    commentEntity.setProperty("content", commentText);
+
+    return commentEntity;
   }
 }
