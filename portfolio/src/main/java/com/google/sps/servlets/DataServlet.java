@@ -63,8 +63,7 @@ public class DataServlet extends HttpServlet {
 
   private Entity createCommentEntity(String commentText) {
     Entity commentEntity = new Entity("Comment");
-
-    commentEntity.setProperty("timestamp", Instant.now());
+    
     commentEntity.setProperty("content", commentText);
 
     return commentEntity;
