@@ -296,38 +296,38 @@ function buildSectionEntryDescription(description) {
 }
 
 /**
- * Processes and appends a list of greetings.
+ * Processes and appends a list of comments.
  * 
- * @param {!Array<string>} greetings A list of greetings.
+ * @param {!Array<string>} comments A list of comments.
  */
-function renderGreetings(greetings) {
+function renderComments(comments) {
   const commentList = document.querySelector('.comments-list');
-  const greetingFragments = greetings.map(buildGreetingFragment);
+  const commentFragments = comments.map(buildCommentFragment);
 
-  commentList.append(...greetingFragments);
+  commentList.append(...commentFragments);
 }
 
 /**
- * Creates and populates a greeting fragment.
+ * Creates and populates a comment fragment.
  * 
- * @param {string} greeting The greeting to populate the fragment.
+ * @param {string} comment The comment to populate the fragment.
  * 
- * @return {!Element} The populated fragment.
+ * @return {!Element} The populated comment.
  */
-function buildGreetingFragment(greeting) {
+function buildCommentFragment(comment) {
   const fragment = document.createElement("div");
   fragment.classList.add("comment")
-  fragment.append(greeting);
+  fragment.append(comment);
 
   return fragment;
 }
 
 /**
- * Requests a list of greetings from the server.
+ * Requests a list of comments from the server.
  * 
- * @return {!Promise<!Array<string>>} A list of greetings.
+ * @return {!Promise<!Array<string>>} A list of comments.
  */
-async function loadGreetings() {
+async function loadComments() {
   const request = await fetch('/data');
 
   return await request.json();
@@ -337,7 +337,7 @@ async function loadGreetings() {
  * Called after the HTML body has been loaded.
  */
 function main() {
-  loadGreetings().then(renderGreetings);
+  loadComments().then(renderComments);
   renderContactData(RESUME.contactData);
   renderSectionData(RESUME.sections);
 }
