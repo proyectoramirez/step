@@ -315,9 +315,14 @@ function renderComments(comments) {
  * @return {!Element} The populated comment.
  */
 function buildCommentFragment(comment) {
-  const fragment = document.createElement("div");
-  fragment.classList.add("comment")
-  fragment.append(comment);
+  const fragment = document.querySelector("#comment").content.cloneNode(/* deep */ true);
+  const populatedFragment = populateCommentFragment(fragment, comment);
+
+  return populatedFragment;
+}
+
+function populateCommentFragment(fragment, comment) {
+  fragment.querySelector(".body").append(comment);
 
   return fragment;
 }
