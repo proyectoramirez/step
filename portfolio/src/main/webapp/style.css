@@ -100,6 +100,7 @@ main > section > .entry > .description > * {
 
 main > .comments-section > .comments-container {
   display: flex;
+  flex-wrap: wrap;
 }
 
 main > .comments-section > .comments-container > :not(:last-child) {
@@ -121,6 +122,16 @@ main > .comments-section .comments-list > .comment {
 
 main > .comments-section .comments-list > .comment > .body{
   overflow-wrap: break-word;
+}
+
+@media screen and (max-width: 800px) {
+  main > .comments-section .comments-list {
+    flex-basis: 100%;
+  }
+
+  main > .comments-section .comments-list > .comment {
+    width: 50%;
+  }
 }
 
 main > .comments-section .comments-list > :not(:last-child) {
