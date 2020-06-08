@@ -11,41 +11,44 @@
       rel="stylesheet">
     <script src="script.js"></script>
   </head>
-
+  
   <body>
-    <header>
+    <header class="space-between-flex">
       <div class="title-container">
         <h1 class="title">José Ramírez</h1>
         <h2>Full-Stack Developer</h2>
       </div>
       <div class="contact-container">
-        <div class="entry">
-          <div class="title">Websites</div>
-          <div class="content">
-            <div>linkedin.com/in/proyectoramirez/</div>
-            <div>github.com/proyectoramirez</div>
+        <template id="contact-entry">
+          <div class="entry">
+            <div class="title"></div>
+            <div class="content"></div>
           </div>
-        </div>
-        <div class="entry">
-          <div class="title">Email</div>
-          <div class="content">proyectoramirez07@gmail.com</div>
-        </div>
-        <div class="entry">
-          <div class="title">Phone</div>
-          <div class="content">813-965-1159</div>
-        </div>
+        </template>
       </div>
     </header>
     <main>
-      <section>
-        <h3 class="title">Education</h3>
-      </section>
-      <section>
-        <h3 class="title">Work Experience</h3>
-      </section>
-      <section>
-        <h3 class="title">Activities</h3>
-      </section>
+      <template id="section">
+        <section>
+          <h3 class="title"></h3>
+        </section>
+      </template>
+
+      <template id="section-entry">
+        <div class="entry">
+          <div class="header space-between-flex">
+            <i class="organization"></i>
+            <div class="dates"></div>
+          </div>
+          <div class="header space-between-flex">
+            <span>
+              <b class="title"></b> <span class="subtitle"></span>
+            </span>
+            <span class="location"></span>
+          </div>
+          <div class="description"></div>
+        </div>
+      </template>
     </main>
   </body>
 

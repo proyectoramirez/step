@@ -25,11 +25,8 @@ h1, h2, h3 {
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: var(--spacing-md) var(--spacing-lg);
-  flex-wrap: wrap;
 }
 
 header > .contact-container {
@@ -54,7 +51,6 @@ header > .contact-container > .entry > .title {
 header > .title-container {
   text-transform: uppercase;
   margin: var(--spacing-md) 0;
-  margin-right: var(--spacing-md);
 }
 
 header > .title-container > .title {
@@ -76,11 +72,29 @@ main {
 }
 
 main > section:not(:last-child) {
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
 main > section > .title {
   margin-top: 0;
   border-bottom: var(--border-style);
   color: var(--primary);
+}
+
+main > section > * {
+  margin-bottom: var(--spacing-sm);
+}
+
+main > section > .entry > .description > * {
+  margin: 0;
+}
+
+.space-between-flex {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.space-between-flex > :first-child {
+  margin-right: var(--spacing-md);
 }
