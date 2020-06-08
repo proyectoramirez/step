@@ -322,7 +322,7 @@ function buildGreetingFragment(greeting) {
 }
 
 /**
- * Requests a list of greetings from "/data".
+ * Requests a list of greetings from the server.
  * 
  * @return {!Promise<!Array<string>>} A list of greetings.
  */
