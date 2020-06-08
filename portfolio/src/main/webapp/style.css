@@ -109,6 +109,12 @@ main > .comments-section > .comments-container > :not(:last-child) {
 
 main > .comments-section .comments-list {
   flex: 2 0 0;
+  display: flex;
+  overflow-x: auto;
+}
+
+main > .comments-section .comments-list > :not(:last-child) {
+  margin-right: var(--spacing-md);
 }
 
 main > .comments-section .comments-form-container {
