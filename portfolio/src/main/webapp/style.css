@@ -113,6 +113,16 @@ main > .comments-section .comments-list {
   overflow-x: auto;
 }
 
+main > .comments-section .comments-list > .comment {
+  width: 20%;
+  flex-shrink: 0;
+  padding: var(--spacing-sm);
+}
+
+main > .comments-section .comments-list > .comment > .body{
+  overflow-wrap: break-word;
+}
+
 main > .comments-section .comments-list > :not(:last-child) {
   margin-right: var(--spacing-md);
 }
