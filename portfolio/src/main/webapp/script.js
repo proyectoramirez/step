@@ -329,6 +329,14 @@ function buildCommentFragment(comment) {
   return populatedFragment;
 }
 
+/**
+ * Populates an empty comment fragment. 
+ * 
+ * @param {!DocumentFragment} section The empty comment fragment.
+ * @param {string} comment The comment text.
+ * 
+ * @return {!DocumentFragment} The populated comment fragment.
+ */
 function populateCommentFragment(fragment, comment) {
   fragment.querySelector(".body").append(comment);
 
