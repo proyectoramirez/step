@@ -304,6 +304,7 @@ function renderGreetings(greetings) {
   const commentList = document.querySelector('.comments-list');
   const greetingFragments = greetings.map(buildGreetingFragment);
 
+  commentList.querySelectorAll(".comment").forEach(element => element.remove());
   commentList.append(...greetingFragments);
 }
 
