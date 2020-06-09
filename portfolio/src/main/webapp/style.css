@@ -162,3 +162,8 @@ main > .comments-section .comments-form > :not(:last-child) {
 .space-between-flex > :first-child {
   margin-right: var(--spacing-md);
 }
+
+.centerInFlex {
+  align-self: center;
+  margin: auto;
+}
