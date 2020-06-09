@@ -296,15 +296,23 @@ function buildSectionEntryDescription(description) {
 }
 
 /**
- * Processes and appends a list of comments.
+ * Processes and appends a list of comments. Renders a message
+ * if there are no comments to show.
  * 
  * @param {!Array<string>} comments A list of comments.
  */
 function renderComments(comments) {
   const commentList = document.querySelector('.comments-list');
-  const commentFragments = comments.map(buildCommentFragment);
 
-  commentList.append(...commentFragments);
+  if (comments.length) {
+    const commentFragments = comments.map(buildCommentFragment);
+
+    commentList.append(...commentFragments);
+  } else {
+    const noCommentsFragment = buildNoCommentsFragment();
+
+    commentList.append(noCommentsFragment);
+  }
 }
 
 /**
@@ -323,6 +331,22 @@ function buildCommentFragment(comment) {
 
 function populateCommentFragment(fragment, comment) {
   fragment.querySelector(".body").append(comment);
+
+  return fragment;
+}
+
+/**
+ * Returns a fragment to be included in the comments list
+ * if there are no other comments to show.
+ * 
+ * @return {!Element} An element with indication that there are no
+ *    other comments.
+ */
+function buildNoCommentsFragment() {
+  const fragment = document.createElement("h4");
+
+  fragment.classList.add("centerInFlex");
+  fragment.textContent = "There's no comments :("
 
   return fragment;
 }
