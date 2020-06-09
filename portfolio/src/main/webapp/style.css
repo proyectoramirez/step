@@ -120,6 +120,19 @@ main > .comments-section .comments-list > .comment {
   flex: none;
 }
 
+main > .comments-section .comments-list > .comment > .header {
+  margin-bottom: var(--spacing-md);
+}
+
+main > .comments-section .comments-list > .comment > .header > * {
+  margin-top: 0;
+  margin-bottom: var(--spacing-xs);
+}
+
+main > .comments-section .comments-list > .comment > .header > .date {
+  color: gray;
+}
+
 main > .comments-section .comments-list > .comment > .body{
   overflow-wrap: break-word;
 }
