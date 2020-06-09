@@ -301,7 +301,7 @@ function buildSectionEntryDescription(description) {
  * @param {!Array<string>} greetings A list of greetings.
  */
 function renderGreetings(greetings) {
-  const commentList = document.querySelector('main > .comments-section .comments-list');
+  const commentList = document.querySelector('.comments-list');
   const greetingFragments = greetings.map(buildGreetingFragment);
 
   commentList.append(...greetingFragments);
