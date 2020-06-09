@@ -28,6 +28,27 @@
       </div>
     </header>
     <main>
+      <section class="comments-section">
+        <h3 class="title">Comments</h3>
+        <div class="comments-container">
+          <div class="comments-list">
+          </div>
+          <div class="comments-form-container">
+            <form class="comments-form" action="/data" method="POST">
+              <div>
+                <label>
+                  <h3>Add your comment!</h3>
+                  <textarea name="comment" rows="3" required placeholder="Type a comment"></textarea>
+                </label>
+              </div>
+              <div>
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
       <template id="section">
         <section>
           <h3 class="title"></h3>

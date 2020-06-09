@@ -6,6 +6,7 @@
   --spacing-xs: 0.25rem;
   --border-style: thin black solid;
   --max-body-width: 1080px;
+  --border-radius: 2px;
 
   font-family: 'Open Sans', sans-serif;
 }
@@ -22,6 +23,14 @@ body {
 
 h1, h2, h3 {
   font-weight: 600;
+}
+
+button {
+  padding: var(--spacing-sm);
+  background-color: var(--primary);
+  border: none;
+  border-radius: var(--border-radius);
+  color: white;
 }
 
 header {
@@ -87,6 +96,34 @@ main > section > * {
 
 main > section > .entry > .description > * {
   margin: 0;
+}
+
+main > .comments-section > .comments-container {
+  display: flex;
+}
+
+main > .comments-section > .comments-container > :not(:last-child) {
+  margin-right: var(--spacing-md);
+}
+
+
+main > .comments-section .comments-list {
+  flex: 2 0 0;
+}
+
+main > .comments-section .comments-form-container {
+  flex: 1 0 0;
+}
+
+main > .comments-section .comments-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+  padding: var(--spacing-sm);
+}
+
+main > .comments-section .comments-form > :not(:last-child) {
+  margin-bottom: var(--spacing-sm);
 }
 
 .space-between-flex {

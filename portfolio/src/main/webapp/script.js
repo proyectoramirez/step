@@ -301,10 +301,10 @@ function buildSectionEntryDescription(description) {
  * @param {!Array<string>} greetings A list of greetings.
  */
 function renderGreetings(greetings) {
-  const mainContainer = document.querySelector('main');
+  const commentList = document.querySelector('.comments-list');
   const greetingFragments = greetings.map(buildGreetingFragment);
 
-  mainContainer.prepend(...greetingFragments);
+  commentList.append(...greetingFragments);
 }
 
 /**
@@ -316,6 +316,7 @@ function renderGreetings(greetings) {
  */
 function buildGreetingFragment(greeting) {
   const fragment = document.createElement("div");
+  fragment.classList.add("comment")
   fragment.append(greeting);
 
   return fragment;
