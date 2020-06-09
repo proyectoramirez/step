@@ -115,9 +115,9 @@ main > .comments-section .comments-list {
 }
 
 main > .comments-section .comments-list > .comment {
-  width: 20%;
-  flex-shrink: 0;
-  padding: var(--spacing-sm);
+  min-width: 25%;
+  max-width: 50%;
+  flex: none;
 }
 
 main > .comments-section .comments-list > .comment > .body{
@@ -127,10 +127,6 @@ main > .comments-section .comments-list > .comment > .body{
 @media screen and (max-width: 800px) {
   main > .comments-section .comments-list {
     flex-basis: 100%;
-  }
-
-  main > .comments-section .comments-list > .comment {
-    width: 50%;
   }
 }
 
