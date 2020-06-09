@@ -120,7 +120,7 @@ function renderContactData(contactData) {
  * @param {!(string | {text: string, link: string} | Array<string | {text: string, link: string}>)} data 
  *    A single or an array of contact data, which could be a string or an object with text and a link.
  * 
- * @return {!HTMLElement} A populated contact-entry fragment
+ * @return {!Element} A populated contact-entry fragment
  */
 function buildContactEntryFragment(title, data) {
   const fragment = document.querySelector("#contact-entry").content.cloneNode(true);
@@ -160,7 +160,7 @@ function populateContactEntryFragment(entryFragment, title, data) {
  * @param {!(string | {text: string, link: string})} data 
  *    Contact information to be used in the created element
  * 
- * @return {!HTMLElement} The element containing contact information
+ * @return {!Element} The element containing contact information
  */
 function buildContactEntryContent(data) {
   const container = document.createElement('div');
@@ -248,7 +248,7 @@ function buildSectionEntryFragment(entryData) {
 /**
  * Populates an empty section-entry fragment. 
  * 
- * @param {!HTMLElement} entry The empty section-entry fragment.
+ * @param {!Element} entry The empty section-entry fragment.
  * @param {!Object} data An object describing a specific experience.
  * 
  * @return {!DocumentFragment} The populated section-entry fragment.
@@ -276,7 +276,7 @@ function populateSectionEntryFragment(fragment, data) {
  * @param {!(string | Array<string>)} description A string or a list of strings
  *    describing an experience.
  * 
- * @return {string | !HTMLElement}
+ * @return {string | !Element}
  */
 function buildSectionEntryDescription(description) {
   if (Array.isArray(description)) {
@@ -296,9 +296,47 @@ function buildSectionEntryDescription(description) {
 }
 
 /**
+ * Processes and appends a list of greetings.
+ * 
+ * @param {!Array<string>} greetings A list of greetings.
+ */
+function renderGreetings(greetings) {
+  const mainContainer = document.querySelector('main');
+  const greetingFragments = greetings.map(buildGreetingFragment);
+
+  mainContainer.prepend(...greetingFragments);
+}
+
+/**
+ * Creates and populates a greeting fragment.
+ * 
+ * @param {string} greeting The greeting to populate the fragment.
+ * 
+ * @return {!Element} The populated fragment.
+ */
+function buildGreetingFragment(greeting) {
+  const fragment = document.createElement("div");
+  fragment.append(greeting);
+
+  return fragment;
+}
+
+/**
+ * Requests a list of greetings from the server.
+ * 
+ * @return {!Promise<!Array<string>>} A list of greetings.
+ */
+async function loadGreetings() {
+  const request = await fetch('/data');
+
+  return await request.json();
+}
+
+/**
  * Called after the HTML body has been loaded.
  */
 function main() {
+  loadGreetings().then(renderGreetings);
   renderContactData(RESUME.contactData);
   renderSectionData(RESUME.sections);
 }
