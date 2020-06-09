@@ -118,6 +118,11 @@ main > .comments-section .comments-list > .comment {
   min-width: 25%;
   max-width: 50%;
   flex: none;
+  padding: var(--spacing-md);
+
+  border: var(--border-style);
+  border-radius: var(--border-radius);
+  border-color: lightgray;
 }
 
 main > .comments-section .comments-list > .comment > .header {
