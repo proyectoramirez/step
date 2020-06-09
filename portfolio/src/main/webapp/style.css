@@ -124,7 +124,7 @@ main > .comments-section .comments-list > .comment > .body{
   overflow-wrap: break-word;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1080px) {
   main > .comments-section .comments-list {
     flex-basis: 100%;
   }
