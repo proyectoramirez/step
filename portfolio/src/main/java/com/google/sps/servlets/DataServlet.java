@@ -66,12 +66,15 @@ public class DataServlet extends HttpServlet {
     response.sendRedirect("/");
   }
 
-  private Entity createCommentEntity(String commentText) {
+  private Entity createCommentEntity(String commentText) throws IOException {
     Entity commentEntity = new Entity("Comment");
     long timestamp = System.currentTimeMillis();
+    Sentiment sentiment = getCommentSentiment(commentText);
 
     commentEntity.setProperty("content", commentText);
     commentEntity.setProperty("timestamp", timestamp);
+    commentEntity.setProperty("sentimentScore", sentiment.getScore());
+    commentEntity.setProperty("sentimentMagnitude", sentiment.getMagnitude());
 
     return commentEntity;
   }
