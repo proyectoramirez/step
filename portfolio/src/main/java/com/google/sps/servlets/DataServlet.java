@@ -50,7 +50,7 @@ public class DataServlet extends HttpServlet {
 
     Gson gson = new Gson();
     String json = gson.toJson(comments);
-    
+
     response.setContentType("application/json");
     response.getWriter().print(json);
   }
@@ -61,7 +61,7 @@ public class DataServlet extends HttpServlet {
     Entity commentEntity = createCommentEntity(commentText);
 
     datastore.put(commentEntity);
-    
+
     response.sendRedirect("/");
   }
 
