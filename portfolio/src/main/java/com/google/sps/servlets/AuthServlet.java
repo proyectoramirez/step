@@ -28,6 +28,7 @@ import com.google.sps.data.AuthStatus;
 
 @WebServlet("/auth")
 public class AuthServlet extends HttpServlet {
+  final static String REDIRECTION_URL = "/";
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -36,14 +37,11 @@ public class AuthServlet extends HttpServlet {
 
     if (userService.isUserLoggedIn()) {
         String userEmail = userService.getCurrentUser().getEmail();
-
-        String urlToRedirectToAfterUserLogsOut = "/";
-        String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
+        String logoutUrl = userService.createLogoutURL(REDIRECTION_URL);
 
         status = new AuthStatus(userEmail, logoutUrl);
     } else {
-        String urlToRedirectToAfterUserLogsIn = "/";
-        String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
+        String loginUrl = userService.createLoginURL(REDIRECTION_URL);
 
         status = new AuthStatus(null, loginUrl);
     }
