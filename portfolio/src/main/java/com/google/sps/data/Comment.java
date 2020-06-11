@@ -14,6 +14,8 @@
 
 package com.google.sps.data;
 
+import com.google.appengine.api.datastore.Entity;
+
 public final class Comment {
     private final String content;
     private final long timestamp;
@@ -25,5 +27,16 @@ public final class Comment {
         this.timestamp = timestamp;
         this.sentimentScore = sentimentScore;
         this.sentimentMagnitude = sentimentMagnitude;
+    }
+
+    public static Comment fromEntity(Entity entity) {
+        String content = (String) entity.getProperty("content");
+        long timestamp = (long) entity.getProperty("timestamp");
+        float sentimentScore = (float) entity.getProperty("sentimentScore");
+        float sentimentMagnitude = (float) entity.getProperty("sentimentMagnitude");
+
+        Comment comment = new Comment(content, timestamp, sentimentScore, sentimentMagnitude);
+
+        return comment;
     }
 }
