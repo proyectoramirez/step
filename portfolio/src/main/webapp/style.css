@@ -177,7 +177,7 @@ main > .comments-section .comments-form > :not(:last-child) {
   margin-right: var(--spacing-md);
 }
 
-.centerInFlex {
+.center-in-flex {
   align-self: center;
   margin: auto;
 }

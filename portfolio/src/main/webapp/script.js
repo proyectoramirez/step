@@ -351,7 +351,7 @@ function populateCommentFragment(fragment, comment) {
 function buildNoCommentsFragment() {
   const fragment = document.createElement("h4");
 
-  fragment.classList.add("centerInFlex");
+  fragment.classList.add("center-in-flex");
   fragment.textContent = "There's no comments :("
 
   return fragment;
