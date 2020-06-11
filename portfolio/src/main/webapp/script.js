@@ -304,15 +304,13 @@ function buildSectionEntryDescription(description) {
 function renderComments(comments) {
   const commentList = document.querySelector('.comments-list');
 
-  if (comments.length) {
-    const commentFragments = comments.map(buildCommentFragment);
-
-    commentList.append(...commentFragments);
-  } else {
-    const noCommentsFragment = buildNoCommentsFragment();
-
-    commentList.append(noCommentsFragment);
+  if (!comments.length) {
+    commentList.append(buildNoCommentsFragment());
+    return;
   }
+  
+  const commentFragments = comments.map(buildCommentFragment);
+  commentList.append(...commentFragments);
 }
 
 /**
