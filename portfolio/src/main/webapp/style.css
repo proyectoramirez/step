@@ -98,23 +98,35 @@ main > section > .entry > .description > * {
   margin: 0;
 }
 
-main > .comments-section > .comments-container {
+.comments-container {
   display: flex;
   flex-wrap: wrap;
 }
 
-main > .comments-section > .comments-container > :not(:last-child) {
+.comments-container > :not(:last-child) {
   margin-right: var(--spacing-md);
 }
 
-
-main > .comments-section .comments-list {
+.comments-container > .comments-list {
   flex: 2 0 0;
+}
+
+.comments-container > .comments-form-container {
+  flex: 1 0 0;
+}
+
+@media screen and (max-width: 1080px) {
+  .comments-container > .comments-list {
+    flex-basis: 100%;
+  }
+}
+
+.comments-list {
   display: flex;
   overflow-x: auto;
 }
 
-main > .comments-section .comments-list > .comment {
+.comments-list > .comment {
   min-width: 25%;
   max-width: 50%;
   flex: none;
@@ -125,45 +137,35 @@ main > .comments-section .comments-list > .comment {
   border-color: lightgray;
 }
 
-main > .comments-section .comments-list > .comment > .header {
+.comments-list > .comment > .header {
   margin-bottom: var(--spacing-md);
 }
 
-main > .comments-section .comments-list > .comment > .header > * {
+.comments-list > .comment > .header > * {
   margin-top: 0;
   margin-bottom: var(--spacing-xs);
 }
 
-main > .comments-section .comments-list > .comment > .header > .date {
+.comments-list > .comment > .header > .date {
   color: gray;
 }
 
-main > .comments-section .comments-list > .comment > .body{
+.comments-list > .comment > .body {
   overflow-wrap: break-word;
 }
 
-@media screen and (max-width: 1080px) {
-  main > .comments-section .comments-list {
-    flex-basis: 100%;
-  }
-}
-
-main > .comments-section .comments-list > :not(:last-child) {
+.comments-list > :not(:last-child) {
   margin-right: var(--spacing-md);
 }
 
-main > .comments-section .comments-form-container {
-  flex: 1 0 0;
-}
-
-main > .comments-section .comments-form textarea {
+.comments-form textarea {
   width: 100%;
   box-sizing: border-box;
   resize: none;
   padding: var(--spacing-sm);
 }
 
-main > .comments-section .comments-form > :not(:last-child) {
+.comments-form > :not(:last-child) {
   margin-bottom: var(--spacing-sm);
 }
 
