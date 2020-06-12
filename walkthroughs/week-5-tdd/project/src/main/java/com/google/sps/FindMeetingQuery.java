@@ -18,10 +18,24 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     throw new UnsupportedOperationException("TODO: Implement this method.");
+  }
+
+  private List<TimeRange> getUnavailableTimes(Collection<Event> events, Collection<String> attendees) {
+    List<TimeRange> eventTimes = events
+        .stream()
+        .filter(event -> !areAttendeesInEvent(event, attendees))
+        .map(event -> event.getWhen())
+        .sorted(TimeRange.ORDER_BY_START)
+        .collect(Collectors.toList());
+
+    List<TimeRange> unavailableTimes = mergeOverlappingTimeRanges(eventTimes);
+
+    return unavailableTimes;
   }
 
   private boolean areAttendeesInEvent(Event event, Collection<String> attendees) {
