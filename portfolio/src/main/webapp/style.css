@@ -21,7 +21,7 @@ body {
   margin: auto;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-weight: 600;
 }
 
@@ -98,31 +98,74 @@ main > section > .entry > .description > * {
   margin: 0;
 }
 
-main > .comments-section > .comments-container {
+.comments-container {
   display: flex;
+  flex-wrap: wrap;
 }
 
-main > .comments-section > .comments-container > :not(:last-child) {
+.comments-container > :not(:last-child) {
   margin-right: var(--spacing-md);
 }
 
-
-main > .comments-section .comments-list {
+.comments-container > .comments-list {
   flex: 2 0 0;
 }
 
-main > .comments-section .comments-form-container {
+.comments-container > .comments-form-container {
   flex: 1 0 0;
 }
 
-main > .comments-section .comments-form textarea {
+@media screen and (max-width: 1080px) {
+  .comments-container > .comments-list {
+    flex-basis: 100%;
+  }
+}
+
+.comments-list {
+  display: flex;
+  overflow-x: auto;
+}
+
+.comments-list > .comment {
+  min-width: 25%;
+  max-width: 50%;
+  flex: none;
+  padding: var(--spacing-md);
+
+  border: var(--border-style);
+  border-radius: var(--border-radius);
+  border-color: lightgray;
+}
+
+.comments-list > .comment > .header {
+  margin-bottom: var(--spacing-md);
+}
+
+.comments-list > .comment > .header > * {
+  margin-top: 0;
+  margin-bottom: var(--spacing-xs);
+}
+
+.comments-list > .comment > .header > .date {
+  color: gray;
+}
+
+.comments-list > .comment > .body {
+  overflow-wrap: break-word;
+}
+
+.comments-list > :not(:last-child) {
+  margin-right: var(--spacing-md);
+}
+
+.comments-form textarea {
   width: 100%;
   box-sizing: border-box;
   resize: none;
   padding: var(--spacing-sm);
 }
 
-main > .comments-section .comments-form > :not(:last-child) {
+.comments-form > :not(:last-child) {
   margin-bottom: var(--spacing-sm);
 }
 
@@ -134,4 +177,9 @@ main > .comments-section .comments-form > :not(:last-child) {
 
 .space-between-flex > :first-child {
   margin-right: var(--spacing-md);
+}
+
+.center-in-flex {
+  align-self: center;
+  margin: auto;
 }
