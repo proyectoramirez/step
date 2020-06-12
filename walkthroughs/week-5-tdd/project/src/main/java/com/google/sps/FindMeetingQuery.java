@@ -14,8 +14,10 @@
 
 package com.google.sps;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
@@ -24,5 +26,29 @@ public final class FindMeetingQuery {
 
   private boolean areAttendeesInEvent(Event event, Collection<String> attendees) {
     return Collections.disjoint(event.getAttendees(), attendees);
+  }
+
+  private List<TimeRange> mergeOverlappingTimeRanges(List<TimeRange> timeRanges) {
+    ArrayList<TimeRange> mergedTimeRanges = new ArrayList<>();
+
+    for (TimeRange timeRange : timeRanges) {
+      if (mergedTimeRanges.size() == 0) {
+        mergedTimeRanges.add(timeRange);
+        continue;
+      } 
+
+      int lastIndex = mergedTimeRanges.size() - 1;
+      TimeRange lastTimeRange = mergedTimeRanges.get(lastIndex);
+      
+      if (lastTimeRange.contains(timeRange)) {
+        continue;
+      } else if (lastTimeRange.overlaps(timeRange)) {
+        mergedTimeRanges.set(lastIndex, TimeRange.fromStartEnd(lastTimeRange.start(), timeRange.end(), false));
+      } else {
+        mergedTimeRanges.add(timeRange);
+      }
+    }
+
+    return mergedTimeRanges;
   }
 }
