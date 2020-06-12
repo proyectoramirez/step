@@ -51,4 +51,26 @@ public final class FindMeetingQuery {
 
     return mergedTimeRanges;
   }
+
+  private List<TimeRange> findAvailableTimeRanges(List<TimeRange> unavailableTimeRanges, long eventDuration) {
+    List<TimeRange> availableTimeRanges = new ArrayList<>();
+
+    int start = TimeRange.START_OF_DAY;
+
+    for (TimeRange timeRange : unavailableTimeRanges) {
+      int end = timeRange.start();
+
+      if (end - start >= eventDuration) {
+        availableTimeRanges.add(TimeRange.fromStartEnd(start, end, false));
+      }
+
+      start = timeRange.end();
+    }
+
+    if (TimeRange.END_OF_DAY - start >= eventDuration) {
+      availableTimeRanges.add(TimeRange.fromStartEnd(start, TimeRange.END_OF_DAY, true));
+    }
+
+    return availableTimeRanges;
+  }
 }
