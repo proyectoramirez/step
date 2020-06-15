@@ -19,10 +19,10 @@ import com.google.appengine.api.datastore.Entity;
 public final class Comment {
     private final String content;
     private final long timestamp;
-    private final float sentimentScore; 
-    private final float sentimentMagnitude; 
+    private final double sentimentScore; 
+    private final double sentimentMagnitude; 
 
-    public Comment(String content, long timestamp, float sentimentScore, float sentimentMagnitude) {
+    public Comment(String content, long timestamp, double sentimentScore, double sentimentMagnitude) {
         this.content = content;
         this.timestamp = timestamp;
         this.sentimentScore = sentimentScore;
@@ -32,8 +32,8 @@ public final class Comment {
     public static Comment fromEntity(Entity entity) {
         String content = (String) entity.getProperty("content");
         long timestamp = (long) entity.getProperty("timestamp");
-        float sentimentScore = (float) entity.getProperty("sentimentScore");
-        float sentimentMagnitude = (float) entity.getProperty("sentimentMagnitude");
+        double sentimentScore = (double) entity.getProperty("sentimentScore");
+        double sentimentMagnitude = (double) entity.getProperty("sentimentMagnitude");
 
         Comment comment = new Comment(content, timestamp, sentimentScore, sentimentMagnitude);
 
