@@ -123,7 +123,7 @@ function renderContactData(contactData) {
  * @return {!Element} A populated contact-entry fragment
  */
 function buildContactEntryFragment(title, data) {
-  const fragment = document.querySelector("#contact-entry").content.cloneNode(true);
+  const fragment = document.querySelector('#contact-entry').content.cloneNode(true);
   const populatedFragment = populateContactEntryFragment(fragment, title, data);
 
   return populatedFragment;
@@ -321,7 +321,7 @@ function renderComments(comments) {
  * @return {!Element} The populated comment.
  */
 function buildCommentFragment(comment) {
-  const fragment = document.querySelector("#comment").content.cloneNode(/* deep */ true);
+  const fragment = document.querySelector('#comment').content.cloneNode(/* deep */ true);
   const populatedFragment = populateCommentFragment(fragment, comment);
 
   return populatedFragment;
@@ -349,10 +349,10 @@ function populateCommentFragment(fragment, comment) {
  *    other comments.
  */
 function buildNoCommentsFragment() {
-  const fragment = document.createElement("h4");
+  const fragment = document.createElement('h4');
 
-  fragment.classList.add("center-in-flex");
-  fragment.textContent = "There's no comments :("
+  fragment.classList.add('center-in-flex');
+  fragment.textContent = 'There\'s no comments :('
 
   return fragment;
 }
