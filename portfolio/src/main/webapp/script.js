@@ -336,7 +336,14 @@ function buildCommentFragment(comment) {
  * @return {!DocumentFragment} The populated comment fragment.
  */
 function populateCommentFragment(fragment, comment) {
-  fragment.querySelector(".body").append(comment);
+  const date = new Date(comment.timestamp);
+
+  fragment.querySelector('.body').append(comment.content);
+  fragment.querySelector('.date').append(date.toLocaleString());
+  fragment.querySelector('.title').style.setProperty(
+    '--indicator-color', 
+    getSentimentColor(comment.sentimentScore, comment.sentimentMagnitude)
+  );
 
   return fragment;
 }
