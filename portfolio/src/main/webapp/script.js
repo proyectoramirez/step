@@ -303,7 +303,9 @@ function buildSectionEntryDescription(description) {
  */
 function renderComments(comments) {
   const commentList = document.querySelector('.comments-list');
-
+  
+  commentList.querySelectorAll(".comment").forEach(element => element.remove());
+  
   if (!comments.length) {
     commentList.append(buildNoCommentsFragment());
     return;
@@ -366,6 +368,26 @@ async function loadComments() {
   const request = await fetch('/data');
 
   return await request.json();
+}
+
+/**
+ * Sends a request to delete all comments, and 
+ * re-renders the comments list.
+ */
+async function deleteComments() {
+  await requestCommentDeletion()
+    .then(loadComments)
+    .then(renderComments);
+}
+
+/**
+ * Sends a request to the server to remove all
+ * comments.
+ */
+async function requestCommentDeletion() {
+  await fetch("/delete-data", {
+    method: "POST"
+  });
 }
 
 /**
