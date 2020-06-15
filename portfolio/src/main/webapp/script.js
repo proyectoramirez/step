@@ -342,6 +342,43 @@ function populateCommentFragment(fragment, comment) {
 }
 
 /**
+ * Calculates a color between red and green, based on the sentiment
+ * data provided. If the sentiment score is -1, the color will be
+ * fully red. If it is 1, the color will be fully green. Values
+ * in between these will result in intermediate colors. The brightness
+ * of the color will be determined by the sentiment magnitude.
+ * 
+ * @param {number} sentimentScore Number in range [-1, 1], which will determine
+ *    the hue of the color.
+ * @param {number} sentimentMagnitude Number in range [0, 1], which will determine
+ *    the lightness of the color
+ * 
+ * @return {string} A string containing a CSS color
+ */
+function getSentimentColor(sentimentScore, sentimentMagnitude) {
+  const hue = mapRange(sentimentScore, -1, 1, 0, 120);
+  const lightness = mapRange(sentimentMagnitude, 0, 1, 30, 50);
+
+  return `hsl(${hue}, 100%, ${lightness}%)`;
+}
+
+/**
+ * Maps a number in a given range to a value in different range.
+ * All ranges are inclusive.
+ * 
+ * @param {number} value The number to map.
+ * @param {number} in1 The lower bound of the input range.
+ * @param {number} out1 The upper bound of the input range.
+ * @param {number} in2 The lower bound of the output range.
+ * @param {number} out2 The upper bound of the output range.
+ * 
+ * @return {number} The value mapped to the new range.
+ */
+function mapRange(value, in1, out1, in2, out2) {
+  return (value - in1) * (out2 - in2) / (out1 - in1) + in2;
+}
+
+/**
  * Returns a fragment to be included in the comments list
  * if there are no other comments to show.
  * 
