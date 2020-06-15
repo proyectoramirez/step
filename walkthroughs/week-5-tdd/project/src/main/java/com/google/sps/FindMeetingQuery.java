@@ -59,11 +59,14 @@ public final class FindMeetingQuery {
       
       if (lastTimeRange.contains(timeRange)) {
         continue;
-      } else if (lastTimeRange.overlaps(timeRange)) {
+      } 
+      
+      if (lastTimeRange.overlaps(timeRange)) {
         mergedTimeRanges.set(lastIndex, TimeRange.fromStartEnd(lastTimeRange.start(), timeRange.end(), false));
-      } else {
-        mergedTimeRanges.add(timeRange);
-      }
+        continue;
+      } 
+      
+      mergedTimeRanges.add(timeRange);
     }
 
     return mergedTimeRanges;
