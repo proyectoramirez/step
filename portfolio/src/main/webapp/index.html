@@ -32,13 +32,22 @@
         <h3 class="title">Comments</h3>
         <div class="comments-container">
           <div class="comments-list">
+            <template id="comment">
+              <div class="comment">
+                <div class="header">
+                  <h4 class="title">Someone says...</h4>
+                  <span class="date">A while ago</span>
+                </div>
+                <div class="body"></div>
+              </div>
+            </template>
           </div>
           <div class="comments-form-container">
             <form class="comments-form" action="/data" method="POST">
               <div>
                 <label>
-                  <h3>Add your comment!</h3>
-                  <textarea name="comment" rows="3" required placeholder="Type a comment"></textarea>
+                  <h4>Add your comment!</h4>
+                  <textarea name="comment" rows="3" required placeholder="Type a comment" maxlength="64"></textarea>
                 </label>
               </div>
               <div>

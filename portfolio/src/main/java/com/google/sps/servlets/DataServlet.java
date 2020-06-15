@@ -1,4 +1,4 @@
-// Copyright 2019 Google LLC
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,9 +28,11 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.cloud.language.v1.Document;
+import com.google.cloud.language.v1.LanguageServiceClient;
+import com.google.cloud.language.v1.Sentiment;
 import com.google.gson.Gson;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
   private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -48,7 +50,7 @@ public class DataServlet extends HttpServlet {
 
     Gson gson = new Gson();
     String json = gson.toJson(comments);
-    
+
     response.setContentType("application/json");
     response.getWriter().print(json);
   }
@@ -59,17 +61,30 @@ public class DataServlet extends HttpServlet {
     Entity commentEntity = createCommentEntity(commentText);
 
     datastore.put(commentEntity);
-    
+
     response.sendRedirect("/");
   }
 
-  private Entity createCommentEntity(String commentText) {
+  private Entity createCommentEntity(String commentText) throws IOException {
     Entity commentEntity = new Entity("Comment");
     long timestamp = System.currentTimeMillis();
+    Sentiment sentiment = getCommentSentiment(commentText);
 
     commentEntity.setProperty("content", commentText);
     commentEntity.setProperty("timestamp", timestamp);
+    commentEntity.setProperty("sentimentScore", sentiment.getScore());
+    commentEntity.setProperty("sentimentMagnitude", sentiment.getMagnitude());
 
     return commentEntity;
+  }
+
+  private Sentiment getCommentSentiment(String commentText) throws IOException {
+    Document doc = Document.newBuilder().setContent(commentText).setType(Document.Type.PLAIN_TEXT).build();
+    
+    LanguageServiceClient languageService = LanguageServiceClient.create();
+    Sentiment sentiment = languageService.analyzeSentiment(doc).getDocumentSentiment();
+    languageService.close();
+
+    return sentiment;
   }
 }
