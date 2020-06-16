@@ -55,7 +55,6 @@ public final class FindMeetingQuery {
         .stream()
         .filter(event -> !areAttendeesInEvent(event, attendees))
         .map(event -> event.getWhen())
-        .sorted(TimeRange.ORDER_BY_START)
         .collect(Collectors.toList());
 
     List<TimeRange> unavailableTimes = mergeOverlappingTimeRanges(eventTimes);
@@ -84,10 +83,14 @@ public final class FindMeetingQuery {
    * 
    * @return A list of merged time ranges, sorted by start time.
    */
-  private List<TimeRange> mergeOverlappingTimeRanges(List<TimeRange> timeRanges) {
+  private List<TimeRange> mergeOverlappingTimeRanges(Collection<TimeRange> timeRanges) {
+    List<TimeRange> sortedTimeRanges = timeRanges
+        .stream()
+        .sorted(TimeRange.ORDER_BY_START)
+        .collect(Collectors.toList());
     ArrayList<TimeRange> mergedTimeRanges = new ArrayList<>();
 
-    for (TimeRange timeRange : timeRanges) {
+    for (TimeRange timeRange : sortedTimeRanges) {
       if (mergedTimeRanges.size() == 0) {
         mergedTimeRanges.add(timeRange);
         continue;
