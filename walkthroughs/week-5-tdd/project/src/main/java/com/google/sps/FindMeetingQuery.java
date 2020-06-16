@@ -21,6 +21,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public final class FindMeetingQuery {
+  /**
+   * Given a collection of pre-existing events and a meeting request, this
+   * will find a collection of possible meeting times.
+   * 
+   * @param events An unsorted collection of all events registered 
+   *    in this application.
+   * @param request A meeting request.
+   * 
+   * @return A collection of available times.
+   */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     List<TimeRange> unavailableTimeRanges = getUnavailableTimes(events, request.getAttendees());
     List<TimeRange> suggestedTimeRanges = findAvailableTimeRanges(unavailableTimeRanges, request.getDuration());
@@ -28,6 +38,18 @@ public final class FindMeetingQuery {
     return suggestedTimeRanges;
   }
 
+  /**
+   * Given a collection of events and a collection of people, this
+   * will find a collection of the time ranges when the people are busy.
+   * 
+   * @param events An unsorted collection of all events registered 
+   *    in this application.
+   * @param attendees A collection of people to consider when calculating
+   *    busy time.
+   * 
+   * @return A list of time ranges for which anyone in the list of people are busy,
+   *    sorted by start time.
+   */
   private List<TimeRange> getUnavailableTimes(Collection<Event> events, Collection<String> attendees) {
     List<TimeRange> eventTimes = events
         .stream()
@@ -41,10 +63,27 @@ public final class FindMeetingQuery {
     return unavailableTimes;
   }
 
+  /**
+   * Given an event and a list of people, this will determine
+   * if any of the people are attendees for the event.
+   * 
+   * @param event Any event in the program.
+   * @param attendees A collection of people.
+   * 
+   * @return Whether anyone in the collection of people are
+   *    attendees in the event.
+   */
   private boolean areAttendeesInEvent(Event event, Collection<String> attendees) {
     return Collections.disjoint(event.getAttendees(), attendees);
   }
 
+  /**
+   * Given a collection of time ranges, this will merge those that overlap.
+   * 
+   * @param timeRanges An unsorted collection of time ranges.
+   * 
+   * @return A list of merged time ranges, sorted by start time.
+   */
   private List<TimeRange> mergeOverlappingTimeRanges(List<TimeRange> timeRanges) {
     ArrayList<TimeRange> mergedTimeRanges = new ArrayList<>();
 
@@ -72,6 +111,18 @@ public final class FindMeetingQuery {
     return mergedTimeRanges;
   }
 
+  /**
+   * Given a list of times unavailable for meetings and
+   * the length of a new event, this will find a list of time
+   * ranges when the new event could happen.
+   * 
+   * @param unavailableTimeRanges A list of unavailable time ranges
+   *    sorted by start time.
+   * @param eventDuration The length of an event in minutes.
+   * 
+   * @return An list of time ranges when the new event could be
+   *    scheduled, sorted by start time.
+   */
   private List<TimeRange> findAvailableTimeRanges(List<TimeRange> unavailableTimeRanges, long eventDuration) {
     List<TimeRange> availableTimeRanges = new ArrayList<>();
 
