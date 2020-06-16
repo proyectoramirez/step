@@ -374,15 +374,18 @@ function getSentimentColor(sentimentScore, sentimentMagnitude) {
  * All ranges are inclusive.
  * 
  * @param {number} value The number to map.
- * @param {number} in1 The lower bound of the input range.
- * @param {number} out1 The upper bound of the input range.
- * @param {number} in2 The lower bound of the output range.
- * @param {number} out2 The upper bound of the output range.
+ * @param {number} lowerBoundIn The lower bound of the input range.
+ * @param {number} upperBoundIn The upper bound of the input range.
+ * @param {number} lowerBoundOut The lower bound of the output range.
+ * @param {number} upperBoundOut The upper bound of the output range.
  * 
  * @return {number} The value mapped to the new range.
  */
-function mapRange(value, in1, out1, in2, out2) {
-  return (value - in1) * (out2 - in2) / (out1 - in1) + in2;
+function mapRange(value, lowerBoundIn, upperBoundIn, lowerBoundOut, upperBoundOut) {
+  const dividend = (value - lowerBoundIn) * (upperBoundOut - lowerBoundOut);
+  const divisor = (upperBoundIn - lowerBoundIn) + lowerBoundOut;
+
+  return dividend / divisor;
 }
 
 /**
