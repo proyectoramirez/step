@@ -1,4 +1,4 @@
-// Copyright 2019 Google LLC
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -123,7 +123,7 @@ function renderContactData(contactData) {
  * @return {!Element} A populated contact-entry fragment
  */
 function buildContactEntryFragment(title, data) {
-  const fragment = document.querySelector("#contact-entry").content.cloneNode(true);
+  const fragment = document.querySelector('#contact-entry').content.cloneNode(true);
   const populatedFragment = populateContactEntryFragment(fragment, title, data);
 
   return populatedFragment;
@@ -323,7 +323,7 @@ function renderComments(comments) {
  * @return {!Element} The populated comment.
  */
 function buildCommentFragment(comment) {
-  const fragment = document.querySelector("#comment").content.cloneNode(/* deep */ true);
+  const fragment = document.querySelector('#comment').content.cloneNode(/* deep */ true);
   const populatedFragment = populateCommentFragment(fragment, comment);
 
   return populatedFragment;
@@ -338,9 +338,64 @@ function buildCommentFragment(comment) {
  * @return {!DocumentFragment} The populated comment fragment.
  */
 function populateCommentFragment(fragment, comment) {
-  fragment.querySelector(".body").append(comment);
+  const date = new Date(comment.timestamp);
+
+  fragment.querySelector('.body').append(comment.content);
+  fragment.querySelector('.date').append(date.toLocaleString());
+  fragment.querySelector('.title').style.setProperty(
+    '--indicator-color', 
+    getSentimentColor(comment.sentimentScore, comment.sentimentMagnitude)
+  );
 
   return fragment;
+}
+
+/**
+ * Calculates a color between red and green, based on the sentiment
+ * data provided. If the sentiment score is -1, the color will be
+ * fully red. If it is 1, the color will be fully green. Values
+ * in between these will result in intermediate colors. The brightness
+ * of the color will be determined by the sentiment magnitude.
+ * 
+ * @param {number} sentimentScore Number in range [-1, 1], which will determine
+ *    the hue of the color.
+ * @param {number} sentimentMagnitude Number in range [0, 1], which will determine
+ *    the lightness of the color
+ * 
+ * @return {string} A string containing a CSS color
+ */
+function getSentimentColor(sentimentScore, sentimentMagnitude) {
+  const hue = mapRange(
+    /* value */ sentimentScore, 
+    /* lowerBoundIn */ -1, /* upperBoundIn */ 1,
+    /* lowerBoundOut */ 0, /* upperBoundOut */  120
+  );
+  const lightness = mapRange(
+    /* value */ sentimentMagnitude,
+    /* lowerBoundIn */ 0, /* upperBoundIn */ 1,
+    /* lowerBoundOut */ 30, /* upperBoundOut */ 50
+  );
+
+  return `hsl(${hue}, 100%, ${lightness}%)`;
+}
+
+/**
+ * Maps a number in a given range to a value in different range.
+ * All ranges are inclusive.
+ * 
+ * @param {number} value The number to map.
+ * @param {number} lowerBoundIn The lower bound of the input range.
+ * @param {number} upperBoundIn The upper bound of the input range.
+ * @param {number} lowerBoundOut The lower bound of the output range.
+ * @param {number} upperBoundOut The upper bound of the output range.
+ * 
+ * @return {number} The value mapped to the new range.
+ */
+function mapRange(value, lowerBoundIn, upperBoundIn, lowerBoundOut, upperBoundOut) {
+  const dividend = (value - lowerBoundIn) * (upperBoundOut - lowerBoundOut);
+  const divisor = (upperBoundIn - lowerBoundIn) + lowerBoundOut;
+
+  return dividend / divisor;
 }
 
 /**
@@ -351,10 +406,10 @@ function populateCommentFragment(fragment, comment) {
  *    other comments.
  */
 function buildNoCommentsFragment() {
-  const fragment = document.createElement("h4");
+  const fragment = document.createElement('h4');
 
-  fragment.classList.add("center-in-flex");
-  fragment.textContent = "There's no comments :("
+  fragment.classList.add('center-in-flex');
+  fragment.textContent = 'There\'s no comments :('
 
   return fragment;
 }

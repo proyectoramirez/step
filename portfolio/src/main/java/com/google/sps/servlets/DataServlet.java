@@ -32,6 +32,7 @@ import com.google.cloud.language.v1.Document;
 import com.google.cloud.language.v1.LanguageServiceClient;
 import com.google.cloud.language.v1.Sentiment;
 import com.google.gson.Gson;
+import com.google.sps.data.Comment;
 
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
@@ -42,9 +43,9 @@ public class DataServlet extends HttpServlet {
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
 
-    ArrayList<String> comments = new ArrayList<>();
+    ArrayList<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
-      String comment = (String) entity.getProperty("content");
+      Comment comment = Comment.fromEntity(entity);
       comments.add(comment);
     }
 

@@ -146,6 +146,12 @@ main > section > .entry > .description > * {
   margin-bottom: var(--spacing-xs);
 }
 
+.comments-list > .comment > .header > .title::after {
+  content: "⬤";
+  color: var(--indicator-color);
+  margin-left: var(--spacing-sm);
+}
+
 .comments-list > .comment > .header > .date {
   color: gray;
 }
