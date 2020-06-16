@@ -363,8 +363,16 @@ function populateCommentFragment(fragment, comment) {
  * @return {string} A string containing a CSS color
  */
 function getSentimentColor(sentimentScore, sentimentMagnitude) {
-  const hue = mapRange(sentimentScore, -1, 1, 0, 120);
-  const lightness = mapRange(sentimentMagnitude, 0, 1, 30, 50);
+  const hue = mapRange(
+    /* value */ sentimentScore, 
+    /* lowerBoundIn */ -1, /* upperBoundIn */ 1,
+    /* lowerBoundOut */ 0, /* upperBoundOut */  120
+  );
+  const lightness = mapRange(
+    /* value */ sentimentMagnitude,
+    /* lowerBoundIn */ 0, /* upperBoundIn */ 1,
+    /* lowerBoundOut */ 30, /* upperBoundOut */ 50
+  );
 
   return `hsl(${hue}, 100%, ${lightness}%)`;
 }
