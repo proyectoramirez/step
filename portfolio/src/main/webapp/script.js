@@ -304,7 +304,7 @@ function buildSectionEntryDescription(description) {
 function renderComments(comments) {
   const commentList = document.querySelector('.comments-list');
   
-  commentList.querySelectorAll(".comment").forEach(element => element.remove());
+  commentList.querySelectorAll('.comment').forEach(element => element.remove());
   
   if (!comments.length) {
     commentList.append(buildNoCommentsFragment());
@@ -440,8 +440,8 @@ async function deleteComments() {
  * comments.
  */
 async function requestCommentDeletion() {
-  await fetch("/delete-data", {
-    method: "POST"
+  await fetch('/delete-data', {
+    method: 'POST'
   });
 }
 
