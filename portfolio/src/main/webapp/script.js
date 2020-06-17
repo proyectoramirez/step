@@ -392,10 +392,7 @@ function getSentimentColor(sentimentScore, sentimentMagnitude) {
  * @return {number} The value mapped to the new range.
  */
 function mapRange(value, lowerBoundIn, upperBoundIn, lowerBoundOut, upperBoundOut) {
-  const dividend = (value - lowerBoundIn) * (upperBoundOut - lowerBoundOut);
-  const divisor = (upperBoundIn - lowerBoundIn) + lowerBoundOut;
-
-  return dividend / divisor;
+  return (value - lowerBoundIn) * (upperBoundOut - lowerBoundOut) / (upperBoundIn - lowerBoundIn) + lowerBoundOut;
 }
 
 /**
