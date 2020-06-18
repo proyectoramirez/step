@@ -32,7 +32,24 @@ public final class FindMeetingQuery {
    * @return A collection of available times.
    */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    List<TimeRange> unavailableTimeRanges = getUnavailableTimes(events, request.getAttendees());
+    Collection<TimeRange> suggestedTimeRanges = findTimeForMeetingRequest(events, request, true);
+
+    if (suggestedTimeRanges.size() == 0 && request.getAttendees().size() != 0) {
+      suggestedTimeRanges = findTimeForMeetingRequest(events, request, false);
+    }
+
+    return suggestedTimeRanges;
+  }
+
+  public Collection<TimeRange> findTimeForMeetingRequest(Collection<Event> events, MeetingRequest request, 
+      boolean includeOptionalAttendees) {
+    List<String> attendees = new ArrayList<>(request.getAttendees());
+
+    if (includeOptionalAttendees) {
+      attendees.addAll(request.getOptionalAttendees());
+    }
+
+    List<TimeRange> unavailableTimeRanges = getUnavailableTimes(events, attendees);
     List<TimeRange> suggestedTimeRanges = findAvailableTimeRanges(unavailableTimeRanges, request.getDuration());
 
     return suggestedTimeRanges;
