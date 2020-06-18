@@ -304,7 +304,7 @@ function buildSectionEntryDescription(description) {
 function renderComments(comments) {
   const commentList = document.querySelector('.comments-list');
   
-  commentList.querySelectorAll(".comment").forEach(element => element.remove());
+  commentList.querySelectorAll('.comment').forEach(element => element.remove());
   
   if (!comments.length) {
     commentList.append(buildNoCommentsFragment());
@@ -392,10 +392,7 @@ function getSentimentColor(sentimentScore, sentimentMagnitude) {
  * @return {number} The value mapped to the new range.
  */
 function mapRange(value, lowerBoundIn, upperBoundIn, lowerBoundOut, upperBoundOut) {
-  const dividend = (value - lowerBoundIn) * (upperBoundOut - lowerBoundOut);
-  const divisor = (upperBoundIn - lowerBoundIn) + lowerBoundOut;
-
-  return dividend / divisor;
+  return (value - lowerBoundIn) * (upperBoundOut - lowerBoundOut) / (upperBoundIn - lowerBoundIn) + lowerBoundOut;
 }
 
 /**
@@ -440,8 +437,8 @@ async function deleteComments() {
  * comments.
  */
 async function requestCommentDeletion() {
-  await fetch("/delete-data", {
-    method: "POST"
+  await fetch('/delete-data', {
+    method: 'POST'
   });
 }
 
