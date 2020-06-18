@@ -460,6 +460,28 @@ async function loadAuthData() {
 
   return await request.json();
 }
+
+/**
+ * Toggles the visibility of the login and the comments form,
+ * depending on the authentication data of the current user.
+ * 
+ * If the login form is shown, it also sets the proper login
+ * URL for its link.
+ * 
+ * @param {!Object} authData An object with information about the user, and a link
+ *    to log in/out.
+ */
+function updateCommentsForm(authData) {
+  const formContainer = document.querySelector('.comments-container > .comments-form-container');
+
+  if (authData.user) {
+    formContainer.classList.add('logged-in');
+    return;
+  }
+
+  formContainer.querySelector('.login-link').href = authData.actionLink;
+}
+
 /**
  * Called after the HTML body has been loaded.
  */
