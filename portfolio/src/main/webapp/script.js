@@ -450,6 +450,17 @@ async function requestCommentDeletion() {
 }
 
 /**
+ * Sends a request for the authentication status of the current user.
+ * 
+ * @return {!Object} An object with information about the user, and a link
+ *    to log in/out.
+ */
+async function loadAuthData() {
+  const request = await fetch('/auth');
+
+  return await request.json();
+}
+/**
  * Called after the HTML body has been loaded.
  */
 function main() {
