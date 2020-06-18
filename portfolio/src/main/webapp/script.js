@@ -486,6 +486,7 @@ function updateCommentsForm(authData) {
  * Called after the HTML body has been loaded.
  */
 function main() {
+  loadAuthData().then(updateCommentsForm);
   loadComments().then(renderComments);
   renderContactData(RESUME.contactData);
   renderSectionData(RESUME.sections);
