@@ -21,12 +21,15 @@ public final class Comment {
     private final long timestamp;
     private final double sentimentScore; 
     private final double sentimentMagnitude; 
+    private final String author;
 
-    public Comment(String content, long timestamp, double sentimentScore, double sentimentMagnitude) {
+    public Comment(String content, long timestamp, double sentimentScore, 
+            double sentimentMagnitude, String author) {
         this.content = content;
         this.timestamp = timestamp;
         this.sentimentScore = sentimentScore;
         this.sentimentMagnitude = sentimentMagnitude;
+        this.author = author;
     }
 
     public static Comment fromEntity(Entity entity) {
@@ -34,8 +37,9 @@ public final class Comment {
         long timestamp = (long) entity.getProperty("timestamp");
         double sentimentScore = (double) entity.getProperty("sentimentScore");
         double sentimentMagnitude = (double) entity.getProperty("sentimentMagnitude");
+        String author = (String) entity.getProperty("author");
 
-        Comment comment = new Comment(content, timestamp, sentimentScore, sentimentMagnitude);
+        Comment comment = new Comment(content, timestamp, sentimentScore, sentimentMagnitude, author);
 
         return comment;
     }
