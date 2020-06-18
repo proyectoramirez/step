@@ -59,6 +59,11 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    if (!UserServiceFactory.getUserService().isUserLoggedIn()) {
+      response.setStatus(401);
+      return;
+    }
+
     String commentText = request.getParameter("comment");
     Entity commentEntity = createCommentEntity(commentText);
 
