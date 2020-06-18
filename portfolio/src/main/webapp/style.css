@@ -115,6 +115,16 @@ main > section > .entry > .description > * {
   flex: 1 0 0;
 }
 
+.comments-form-container.logged-in > .login,
+.comments-form-container > .comments-form {
+  display: none;
+}
+
+.comments-form-container.logged-in > .comments-form,
+.comments-form-container > .login {
+  display: block;
+}
+
 @media screen and (max-width: 1080px) {
   .comments-container > .comments-list {
     flex-basis: 100%;
