@@ -28,6 +28,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.cloud.language.v1.Document;
 import com.google.cloud.language.v1.LanguageServiceClient;
 import com.google.cloud.language.v1.Sentiment;
@@ -70,11 +71,13 @@ public class DataServlet extends HttpServlet {
     Entity commentEntity = new Entity("Comment");
     long timestamp = System.currentTimeMillis();
     Sentiment sentiment = getCommentSentiment(commentText);
+    String author = UserServiceFactory.getUserService().getCurrentUser().getEmail();
 
     commentEntity.setProperty("content", commentText);
     commentEntity.setProperty("timestamp", timestamp);
     commentEntity.setProperty("sentimentScore", sentiment.getScore());
     commentEntity.setProperty("sentimentMagnitude", sentiment.getMagnitude());
+    commentEntity.setProperty("author", author);
 
     return commentEntity;
   }
