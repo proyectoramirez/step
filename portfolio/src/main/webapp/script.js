@@ -342,7 +342,11 @@ function populateCommentFragment(fragment, comment) {
 
   fragment.querySelector('.body').append(comment.content);
   fragment.querySelector('.date').append(date.toLocaleString());
-  fragment.querySelector('.title').style.setProperty(
+
+  const titleContainer = fragment.querySelector('.title');
+
+  titleContainer.textContent = `${comment.author ?? "Someone"} says...`;
+  titleContainer.style.setProperty(
     '--indicator-color', 
     getSentimentColor(comment.sentimentScore, comment.sentimentMagnitude)
   );
